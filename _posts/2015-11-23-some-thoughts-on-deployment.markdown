@@ -8,7 +8,7 @@ glassfish.
 
 need to try adding this to my proejct.
 
-{% highlight shell	 %}
+{% highlight cmake %}
 
 /usr/local/glassfish/bin/asadmin --echo=true --host=localhost --port=4848 --user=admin --passwordfile=/secure/place/for/passwords/domain1_password --secure=false deploy --force=true --name=myproject --contextroot=/myproject target/*.war
 
