@@ -1,17 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Your awesome title</title>
-    <description>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.
+    <title>Development blog</title>
+    <description>My name is Alex and this is my development blog.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 23 Nov 2015 00:22:52 +0200</pubDate>
-    <lastBuildDate>Mon, 23 Nov 2015 00:22:52 +0200</lastBuildDate>
+    <link>micha-sky.github.io/</link>
+    <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Mon, 23 Nov 2015 01:45:08 +0200</pubDate>
+    <lastBuildDate>Mon, 23 Nov 2015 01:45:08 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>Welcome to Jekyll!</title>
+        <title>some thoughts on deployment</title>
+        <description>&lt;p&gt;i wonder if you need cargo plugin to deploy Java applicaton to
+glassfish.&lt;/p&gt;
+
+&lt;p&gt;need to try adding this to my proejct.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cmake&quot; data-lang=&quot;cmake&quot;&gt;&lt;span class=&quot;err&quot;&gt;/usr/local/glassfish/bin/asadmin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--echo=true&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--host=localhost&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--port=4848&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--user=admin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--passwordfile=/secure/place/for/passwords/domain1_password&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--secure=false&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;deploy&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--force=true&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--name=myproject&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--contextroot=/myproject&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;target/*.war&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;build&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugins&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.codehaus.cargo&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;cargo-maven2-plugin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;1.3.3&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;container&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;containerId&amp;gt;&lt;/span&gt;glassfish3x&lt;span class=&quot;nt&quot;&gt;&amp;lt;/containerId&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;remote&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;/container&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;runtime&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;properties&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;cargo.hostname&amp;gt;&lt;/span&gt;localhost&lt;span class=&quot;nt&quot;&gt;&amp;lt;/cargo.hostname&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;cargo.remote.username&amp;gt;&lt;/span&gt;admin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/cargo.remote.username&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;cargo.remote.password&amp;gt;&lt;/span&gt;admin&lt;span class=&quot;nt&quot;&gt;&amp;lt;/cargo.remote.password&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;cargo.remote.port&amp;gt;&lt;/span&gt;50447&lt;span class=&quot;nt&quot;&gt;&amp;lt;/cargo.remote.port&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;cargo.glassfish.domain.name&amp;gt;&lt;/span&gt;/myapp&lt;span class=&quot;nt&quot;&gt;&amp;lt;/cargo.glassfish.domain.name&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;/properties&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;deployables&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;deployable&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;${project.groupId}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;${project.artifactId}&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;type&amp;gt;&lt;/span&gt;war&lt;span class=&quot;nt&quot;&gt;&amp;lt;/type&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;properties&amp;gt;&lt;/span&gt;
+							&lt;span class=&quot;nt&quot;&gt;&amp;lt;context&amp;gt;&lt;/span&gt;/myapp&lt;span class=&quot;nt&quot;&gt;&amp;lt;/context&amp;gt;&lt;/span&gt;
+						&lt;span class=&quot;nt&quot;&gt;&amp;lt;/properties&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;/deployable&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;/deployables&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependencies&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.glassfish.deployment&lt;span class=&quot;nt&quot;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;deployment-client&lt;span class=&quot;nt&quot;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+					&lt;span class=&quot;nt&quot;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;3.2-b06&lt;span class=&quot;nt&quot;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+				&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
+			&lt;span class=&quot;nt&quot;&gt;&amp;lt;/dependencies&amp;gt;&lt;/span&gt;
+		&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
+	&lt;span class=&quot;nt&quot;&gt;&amp;lt;/plugins&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;/build&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sat, 28 Nov 2015 15:58:00 +0200</pubDate>
+        <link>micha-sky.github.io/2015/11/28/some-thoughts-on-deployment.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/2015/11/28/some-thoughts-on-deployment.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>first Jekyll post</title>
+        <description>&lt;p&gt;Not much, just trying out Jekyll.&lt;/p&gt;
+
+&lt;p&gt;This thing highlights code which is very cool.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;
+  &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Widget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# show.html.erb&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@widget&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Mon, 23 Nov 2015 00:54:58 +0200</pubDate>
+        <link>micha-sky.github.io/jekyll/update/2015/11/23/first-jekyll-post.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/jekyll/update/2015/11/23/first-jekyll-post.html</guid>
+        
+        
+        <category>jekyll</category>
+        
+        <category>update</category>
+        
+      </item>
+    
+      <item>
+        <title>welcome to Jekyll!</title>
         <description>&lt;p&gt;You’ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
 
 &lt;p&gt;To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
@@ -28,8 +112,8 @@
 
 </description>
         <pubDate>Mon, 23 Nov 2015 00:20:58 +0200</pubDate>
-        <link>http://yourdomain.com/jekyll/update/2015/11/23/welcome-to-jekyll.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/jekyll/update/2015/11/23/welcome-to-jekyll.html</guid>
+        <link>micha-sky.github.io/jekyll/update/2015/11/23/welcome-to-jekyll.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/jekyll/update/2015/11/23/welcome-to-jekyll.html</guid>
         
         
         <category>jekyll</category>

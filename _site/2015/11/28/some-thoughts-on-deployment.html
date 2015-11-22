@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>welcome to Jekyll!</title>
-  <meta name="description" content="You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different wa...">
+  <title>some thoughts on deployment</title>
+  <meta name="description" content="i wonder if you need cargo plugin to deploy Java applicaton toglassfish.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/jekyll/update/2015/11/23/welcome-to-jekyll.html">
+  <link rel="canonical" href="micha-sky.github.io/2015/11/28/some-thoughts-on-deployment.html">
   <link rel="alternate" type="application/rss+xml" title="Development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,25 +57,60 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">welcome to Jekyll!</h1>
-    <p class="post-meta"><time datetime="2015-11-23T00:20:58+02:00" itemprop="datePublished">Nov 23, 2015</time></p>
+    <h1 class="post-title" itemprop="name headline">some thoughts on deployment</h1>
+    <p class="post-meta"><time datetime="2015-11-28T15:58:00+02:00" itemprop="datePublished">Nov 28, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>You’ll find this post in your <code>_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code>jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+    <p>i wonder if you need cargo plugin to deploy Java applicaton to
+glassfish.</p>
 
-<p>To add new posts, simply add a file in the <code>_posts</code> directory that follows the convention <code>YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<p>need to try adding this to my proejct.</p>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="err">/usr/local/glassfish/bin/asadmin</span> <span class="err">--echo=true</span> <span class="err">--host=localhost</span> <span class="err">--port=4848</span> <span class="err">--user=admin</span> <span class="err">--passwordfile=/secure/place/for/passwords/domain1_password</span> <span class="err">--secure=false</span> <span class="err">deploy</span> <span class="err">--force=true</span> <span class="err">--name=myproject</span> <span class="err">--contextroot=/myproject</span> <span class="err">target/*.war</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">&quot;Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">&quot;</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">&#39;Tom&#39;</span><span class="p">)</span>
-<span class="c1">#=&gt; prints &#39;Hi, Tom&#39; to STDOUT.</span></code></pre></div>
-
-<p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
-
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
+	<span class="nt">&lt;plugins&gt;</span>
+		<span class="nt">&lt;plugin&gt;</span>
+			<span class="nt">&lt;groupId&gt;</span>org.codehaus.cargo<span class="nt">&lt;/groupId&gt;</span>
+			<span class="nt">&lt;artifactId&gt;</span>cargo-maven2-plugin<span class="nt">&lt;/artifactId&gt;</span>
+			<span class="nt">&lt;version&gt;</span>1.3.3<span class="nt">&lt;/version&gt;</span>
+			<span class="nt">&lt;configuration&gt;</span>
+				<span class="nt">&lt;container&gt;</span>
+					<span class="nt">&lt;containerId&gt;</span>glassfish3x<span class="nt">&lt;/containerId&gt;</span>
+					<span class="nt">&lt;type&gt;</span>remote<span class="nt">&lt;/type&gt;</span>
+				<span class="nt">&lt;/container&gt;</span>
+				<span class="nt">&lt;configuration&gt;</span>
+					<span class="nt">&lt;type&gt;</span>runtime<span class="nt">&lt;/type&gt;</span>
+					<span class="nt">&lt;properties&gt;</span>
+						<span class="nt">&lt;cargo.hostname&gt;</span>localhost<span class="nt">&lt;/cargo.hostname&gt;</span>
+						<span class="nt">&lt;cargo.remote.username&gt;</span>admin<span class="nt">&lt;/cargo.remote.username&gt;</span>
+						<span class="nt">&lt;cargo.remote.password&gt;</span>admin<span class="nt">&lt;/cargo.remote.password&gt;</span>
+						<span class="nt">&lt;cargo.remote.port&gt;</span>50447<span class="nt">&lt;/cargo.remote.port&gt;</span>
+						<span class="nt">&lt;cargo.glassfish.domain.name&gt;</span>/myapp<span class="nt">&lt;/cargo.glassfish.domain.name&gt;</span>
+					<span class="nt">&lt;/properties&gt;</span>
+				<span class="nt">&lt;/configuration&gt;</span>
+				<span class="nt">&lt;deployables&gt;</span>
+					<span class="nt">&lt;deployable&gt;</span>
+						<span class="nt">&lt;groupId&gt;</span>${project.groupId}<span class="nt">&lt;/groupId&gt;</span>
+						<span class="nt">&lt;artifactId&gt;</span>${project.artifactId}<span class="nt">&lt;/artifactId&gt;</span>
+						<span class="nt">&lt;type&gt;</span>war<span class="nt">&lt;/type&gt;</span>
+						<span class="nt">&lt;properties&gt;</span>
+							<span class="nt">&lt;context&gt;</span>/myapp<span class="nt">&lt;/context&gt;</span>
+						<span class="nt">&lt;/properties&gt;</span>
+					<span class="nt">&lt;/deployable&gt;</span>
+				<span class="nt">&lt;/deployables&gt;</span>
+			<span class="nt">&lt;/configuration&gt;</span>
+			<span class="nt">&lt;dependencies&gt;</span>
+				<span class="nt">&lt;dependency&gt;</span>
+					<span class="nt">&lt;groupId&gt;</span>org.glassfish.deployment<span class="nt">&lt;/groupId&gt;</span>
+					<span class="nt">&lt;artifactId&gt;</span>deployment-client<span class="nt">&lt;/artifactId&gt;</span>
+					<span class="nt">&lt;version&gt;</span>3.2-b06<span class="nt">&lt;/version&gt;</span>
+				<span class="nt">&lt;/dependency&gt;</span>
+			<span class="nt">&lt;/dependencies&gt;</span>
+		<span class="nt">&lt;/plugin&gt;</span>
+	<span class="nt">&lt;/plugins&gt;</span>
+<span class="nt">&lt;/build&gt;</span></code></pre></div>
 
   </div>
 

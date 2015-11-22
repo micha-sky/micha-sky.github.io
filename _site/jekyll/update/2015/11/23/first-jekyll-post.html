@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Development blog</title>
-  <meta name="description" content="My name is Alex and this is my development blog.
-">
+  <title>first Jekyll post</title>
+  <meta name="description" content="Not much, just trying out Jekyll.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/">
+  <link rel="canonical" href="micha-sky.github.io/jekyll/update/2015/11/23/first-jekyll-post.html">
   <link rel="alternate" type="application/rss+xml" title="Development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -55,41 +54,29 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">first Jekyll post</h1>
+    <p class="post-meta"><time datetime="2015-11-23T00:54:58+02:00" itemprop="datePublished">Nov 23, 2015</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>Not much, just trying out Jekyll.</p>
 
-        <h2>
-          <a class="post-link" href="/2015/11/28/some-thoughts-on-deployment.html">some thoughts on deployment</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 23, 2015</span>
+<p>This thing highlights code which is very cool.</p>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2015/11/23/first-jekyll-post.html">first Jekyll post</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 23, 2015</span>
+<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">show</span>
+  <span class="vi">@widget</span> <span class="o">=</span> <span class="no">Widget</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
+  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+    <span class="nb">format</span><span class="o">.</span><span class="n">html</span> <span class="c1"># show.html.erb</span>
+    <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@widget</span> <span class="p">}</span>
+  <span class="k">end</span>
+<span class="k">end</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2015/11/23/welcome-to-jekyll.html">welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-  </ul>
+  </div>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
-</div>
+</article>
 
       </div>
     </div>
