@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>first Jekyll post</title>
-  <meta name="description" content="Not much, just trying out Jekyll.">
+  <title>how to set up jenkins project with glassfish</title>
+  <meta name="description" content="if you want to use jenkins and glassfish on one instance, it’s very easy to for continious integration.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/jekyll/update/2015/11/23/first-jekyll-post.html">
+  <link rel="canonical" href="micha-sky.github.io/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,22 +57,53 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">first Jekyll post</h1>
-    <p class="post-meta"><time datetime="2015-11-23T00:54:58+02:00" itemprop="datePublished">Nov 23, 2015</time></p>
+    <h1 class="post-title" itemprop="name headline">how to set up jenkins project with glassfish</h1>
+    <p class="post-meta"><time datetime="2015-11-28T00:39:58+02:00" itemprop="datePublished">Nov 28, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>Not much, just trying out Jekyll.</p>
+    <p>if you want to use jenkins and glassfish on one instance, it’s very easy to for continious integration.</p>
 
-<p>This thing highlights code which is very cool.</p>
+<p>first you want to add new maven project and configure git repository. </p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">show</span>
-  <span class="vi">@widget</span> <span class="o">=</span> <span class="no">Widget</span><span class="p">(</span><span class="n">params</span><span class="o">[</span><span class="ss">:id</span><span class="o">]</span><span class="p">)</span>
-  <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
-    <span class="nb">format</span><span class="o">.</span><span class="n">html</span> <span class="c1"># show.html.erb</span>
-    <span class="nb">format</span><span class="o">.</span><span class="n">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json</span><span class="p">:</span> <span class="vi">@widget</span> <span class="p">}</span>
-  <span class="k">end</span>
-<span class="k">end</span></code></pre></div>
+<p>then you need to add pre-build script that pulls changes from repository:</p>
+
+<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="c">#!/bin/bash</span>
+
+<span class="err">cd</span> <span class="err">/path/to/repository</span>
+
+<span class="err">git</span> <span class="err">pull</span> <span class="err">origin</span> <span class="err">master</span></code></pre></div>
+
+<p>then you specify maven goal, e.g. </p>
+
+<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="err">mvn</span> <span class="err">clean</span> <span class="err">package</span> <span class="err">-DskipTests=true</span></code></pre></div>
+
+<p>after that you add post-build script, which deploys build to :</p>
+
+<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="c">#!/bin/bash</span>
+
+<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Undeploying</span> <span class="err">current</span> <span class="err">version...&quot;</span>
+<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">undeploy</span> <span class="err">ROOT</span>
+<span class="err">echo</span> <span class="err">&quot;done&quot;</span>
+
+<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Stopping</span> <span class="err">glassfish...&quot;</span>
+<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">stop-domain</span> <span class="err">yourdomain</span>
+<span class="err">echo</span> <span class="err">&quot;done&quot;</span>
+
+<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Starting</span> <span class="err">glassfish...&quot;</span>
+<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">start-domain</span> <span class="err">yourdomain</span>
+<span class="err">echo</span> <span class="err">&quot;done&quot;</span>
+
+<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Deploying</span> <span class="err">ROOT.WAR...&quot;</span>
+<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">--user</span> <span class="err">admin</span> <span class="err">deploy</span> <span class="err">--contextroot</span> <span class="err">/</span> <span class="err">--name</span> <span class="err">ROOT</span> <span class="err">/var/lib/jenkins/workspace/projectname/target/ROOT.war</span>
+<span class="err">echo</span> <span class="err">&quot;done&quot;</span></code></pre></div>
+
+<p>aslo you want to use –passwordfile option, that allows you not to type password every time you run this script.
+passwordfile contains AS_ADMIN_PASSWORD=yourpassword</p>
+
+<p>this would probably work without stopping and starting domain.</p>
+
+<p>after setting up project you want to build it, and schedule your build.</p>
 
   </div>
 
