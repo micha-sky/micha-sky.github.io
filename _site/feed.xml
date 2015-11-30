@@ -6,9 +6,32 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 28 Nov 2015 13:28:19 +0200</pubDate>
-    <lastBuildDate>Sat, 28 Nov 2015 13:28:19 +0200</lastBuildDate>
+    <pubDate>Mon, 30 Nov 2015 17:41:13 +0200</pubDate>
+    <lastBuildDate>Mon, 30 Nov 2015 17:41:13 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>ftp server configuration on linux</title>
+        <description>&lt;p&gt;quick note how to set up an ftp server on ubuntu. first you install vsftpd:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install vsftpd&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;then you edit configuration file with vim or nano or whatever you like
+/etc/vsftpd.conf&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;anonymous_enable=NO&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;local_enable=YES&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;write_enable=YES&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;chroot_local_user=YES&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Mon, 30 Nov 2015 05:26:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2015/11/30/how-to-setup-ftp-server-on-linux.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2015/11/30/how-to-setup-ftp-server-on-linux.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>log4j configuration file</title>
