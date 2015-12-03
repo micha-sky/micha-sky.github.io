@@ -68,35 +68,35 @@
 
 <p>then you need to add pre-build script that pulls changes from repository:</p>
 
-<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span>!/bin/bash
 
-<span class="err">cd</span> <span class="err">/path/to/repository</span>
+<span class="go">cd /path/to/repository</span>
 
-<span class="err">git</span> <span class="err">pull</span> <span class="err">origin</span> <span class="err">master</span></code></pre></div>
+<span class="go">git pull origin master</span></code></pre></div>
 
 <p>then you specify maven goal, e.g. </p>
 
-<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="err">mvn</span> <span class="err">clean</span> <span class="err">package</span> <span class="err">-DskipTests=true</span></code></pre></div>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">mvn clean package -DskipTests=true</span></code></pre></div>
 
 <p>after that you add post-build script, which deploys build to :</p>
 
-<div class="highlight"><pre><code class="language-cmake" data-lang="cmake"><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span>!/bin/bash
 
-<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Undeploying</span> <span class="err">current</span> <span class="err">version...&quot;</span>
-<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">undeploy</span> <span class="err">ROOT</span>
-<span class="err">echo</span> <span class="err">&quot;done&quot;</span>
+<span class="go">echo -n &quot;Undeploying current version...&quot;</span>
+<span class="go">/opt/glassfish4/bin/asadmin undeploy ROOT</span>
+<span class="go">echo &quot;done&quot;</span>
 
-<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Stopping</span> <span class="err">glassfish...&quot;</span>
-<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">stop-domain</span> <span class="err">yourdomain</span>
-<span class="err">echo</span> <span class="err">&quot;done&quot;</span>
+<span class="go">echo -n &quot;Stopping glassfish...&quot;</span>
+<span class="go">/opt/glassfish4/bin/asadmin stop-domain yourdomain</span>
+<span class="go">echo &quot;done&quot;</span>
 
-<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Starting</span> <span class="err">glassfish...&quot;</span>
-<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">start-domain</span> <span class="err">yourdomain</span>
-<span class="err">echo</span> <span class="err">&quot;done&quot;</span>
+<span class="go">echo -n &quot;Starting glassfish...&quot;</span>
+<span class="go">/opt/glassfish4/bin/asadmin start-domain yourdomain</span>
+<span class="go">echo &quot;done&quot;</span>
 
-<span class="err">echo</span> <span class="err">-n</span> <span class="err">&quot;Deploying</span> <span class="err">ROOT.WAR...&quot;</span>
-<span class="err">/opt/glassfish4/bin/asadmin</span> <span class="err">--user</span> <span class="err">admin</span> <span class="err">deploy</span> <span class="err">--contextroot</span> <span class="err">/</span> <span class="err">--name</span> <span class="err">ROOT</span> <span class="err">/var/lib/jenkins/workspace/projectname/target/ROOT.war</span>
-<span class="err">echo</span> <span class="err">&quot;done&quot;</span></code></pre></div>
+<span class="go">echo -n &quot;Deploying ROOT.WAR...&quot;</span>
+<span class="go">/opt/glassfish4/bin/asadmin --user admin deploy --contextroot / --name ROOT /var/lib/jenkins/workspace/projectname/target/ROOT.war</span>
+<span class="go">echo &quot;done&quot;</span></code></pre></div>
 
 <p>aslo you want to use –passwordfile option, that allows you not to type password every time you run this script.
 passwordfile contains AS_ADMIN_PASSWORD=yourpassword</p>

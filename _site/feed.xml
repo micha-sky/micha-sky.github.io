@@ -6,12 +6,12 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 30 Nov 2015 17:41:13 +0200</pubDate>
-    <lastBuildDate>Mon, 30 Nov 2015 17:41:13 +0200</lastBuildDate>
+    <pubDate>Thu, 03 Dec 2015 19:05:01 +0200</pubDate>
+    <lastBuildDate>Thu, 03 Dec 2015 19:05:01 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
-        <title>ftp server configuration on linux</title>
+        <title>ftp server configuration on amazon ec2</title>
         <description>&lt;p&gt;quick note how to set up an ftp server on ubuntu. first you install vsftpd:&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install vsftpd&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -23,6 +23,13 @@
 &lt;span class=&quot;go&quot;&gt;local_enable=YES&lt;/span&gt;
 &lt;span class=&quot;go&quot;&gt;write_enable=YES&lt;/span&gt;
 &lt;span class=&quot;go&quot;&gt;chroot_local_user=YES&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;then you need to add passive ports range to config file like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;pasv_min_port=8000&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;pasv_max_port=8100&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;also don’t forget to open these port in amazon console’s security group.&lt;/p&gt;
 </description>
         <pubDate>Mon, 30 Nov 2015 05:26:58 +0200</pubDate>
         <link>micha-sky.github.io/development/2015/11/30/how-to-setup-ftp-server-on-linux.html</link>
@@ -54,35 +61,35 @@
 
 &lt;p&gt;then you need to add pre-build script that pulls changes from repository:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cmake&quot; data-lang=&quot;cmake&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;#&lt;/span&gt;!/bin/bash
 
-&lt;span class=&quot;err&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;/path/to/repository&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;cd /path/to/repository&lt;/span&gt;
 
-&lt;span class=&quot;err&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;pull&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;origin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;master&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;go&quot;&gt;git pull origin master&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;then you specify maven goal, e.g. &lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cmake&quot; data-lang=&quot;cmake&quot;&gt;&lt;span class=&quot;err&quot;&gt;mvn&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;clean&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;package&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-DskipTests=true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;mvn clean package -DskipTests=true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;after that you add post-build script, which deploys build to :&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-cmake&quot; data-lang=&quot;cmake&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;#&lt;/span&gt;!/bin/bash
 
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;Undeploying&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;current&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;version...&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;/opt/glassfish4/bin/asadmin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;undeploy&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;ROOT&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;done&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo -n &amp;quot;Undeploying current version...&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;/opt/glassfish4/bin/asadmin undeploy ROOT&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo &amp;quot;done&amp;quot;&lt;/span&gt;
 
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;Stopping&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;glassfish...&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;/opt/glassfish4/bin/asadmin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;stop-domain&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;yourdomain&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;done&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo -n &amp;quot;Stopping glassfish...&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;/opt/glassfish4/bin/asadmin stop-domain yourdomain&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo &amp;quot;done&amp;quot;&lt;/span&gt;
 
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;Starting&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;glassfish...&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;/opt/glassfish4/bin/asadmin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;start-domain&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;yourdomain&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;done&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo -n &amp;quot;Starting glassfish...&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;/opt/glassfish4/bin/asadmin start-domain yourdomain&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo &amp;quot;done&amp;quot;&lt;/span&gt;
 
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;-n&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;Deploying&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;ROOT.WAR...&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;/opt/glassfish4/bin/asadmin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--user&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;admin&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;deploy&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--contextroot&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;--name&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;ROOT&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;/var/lib/jenkins/workspace/projectname/target/ROOT.war&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;err&quot;&gt;&amp;quot;done&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class=&quot;go&quot;&gt;echo -n &amp;quot;Deploying ROOT.WAR...&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;/opt/glassfish4/bin/asadmin --user admin deploy --contextroot / --name ROOT /var/lib/jenkins/workspace/projectname/target/ROOT.war&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo &amp;quot;done&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;aslo you want to use –passwordfile option, that allows you not to type password every time you run this script.
 passwordfile contains AS_ADMIN_PASSWORD=yourpassword&lt;/p&gt;

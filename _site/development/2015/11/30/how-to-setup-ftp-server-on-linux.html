@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ftp server configuration on linux</title>
+  <title>ftp server configuration on amazon ec2</title>
   <meta name="description" content="quick note how to set up an ftp server on ubuntu. first you install vsftpd:">
 
   <link rel="stylesheet" href="/css/main.css">
@@ -57,7 +57,7 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">ftp server configuration on linux</h1>
+    <h1 class="post-title" itemprop="name headline">ftp server configuration on amazon ec2</h1>
     <p class="post-meta"><time datetime="2015-11-30T05:26:58+02:00" itemprop="datePublished">Nov 30, 2015</time></p>
   </header>
 
@@ -73,6 +73,13 @@
 <span class="go">local_enable=YES</span>
 <span class="go">write_enable=YES</span>
 <span class="go">chroot_local_user=YES</span></code></pre></div>
+
+<p>then you need to add passive ports range to config file like this:</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">pasv_min_port=8000</span>
+<span class="go">pasv_max_port=8100</span></code></pre></div>
+
+<p>also don’t forget to open these port in amazon console’s security group.</p>
 
   </div>
 

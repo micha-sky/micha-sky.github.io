@@ -10,7 +10,7 @@ first you want to add new maven project and configure git repository.
 
 then you need to add pre-build script that pulls changes from repository:
 
-{% highlight cmake %}
+{% highlight console %}
 #!/bin/bash
 
 cd /path/to/repository
@@ -20,13 +20,13 @@ git pull origin master
 
 then you specify maven goal, e.g. 
 
-{% highlight cmake %}
+{% highlight console %}
 mvn clean package -DskipTests=true
 {% endhighlight %}
 
 after that you add post-build script, which deploys build to :
 
-{% highlight cmake %}
+{% highlight console %}
 #!/bin/bash
 
 echo -n "Undeploying current version..."
