@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>development blog</title>
-  <meta name="description" content="My name is Alex and this is my development blog.
-">
+  <title>set up java environment on ubuntu</title>
+  <meta name="description" content="this article is about setting up proper jre &amp; jdk on ubuntu linux.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/">
+  <link rel="canonical" href="micha-sky.github.io/deployment/2015/12/04/setting-up-java-on-linux.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -55,65 +54,42 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">set up java environment on ubuntu</h1>
+    <p class="post-meta"><time datetime="2015-12-04T00:39:58+02:00" itemprop="datePublished">Dec 4, 2015</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>this article is about setting up proper jre &amp; jdk on ubuntu linux.</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/jenkins-and-glassfish-together.html">running jenkins and glassfish on one instance</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+<p>first, let’s install default jre &amp; jdk</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/setting-up-java-on-linux.html">set up java environment on ubuntu</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 30, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install default-jre</span>
+<span class="go">sudo apt-get install default-jdk</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/development/2015/11/30/how-to-setup-ftp-server-on-linux.html">ftp server configuration on amazon ec2</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
+<p>then we add webupd8team repository</p>
 
-        <h2>
-          <a class="post-link" href="/development/2015/11/28/log4j-xml-file.html">log4j configuration file</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install python-software-properties</span>
+<span class="go">sudo add-apt-repository ppa:webupd8team/java</span>
+<span class="go">sudo apt-get update</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">how to set up jenkins project with glassfish</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 23, 2015</span>
+<p>let’s install oracle’s java 6,7,8</p>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2015/11/23/welcome-to-jekyll.html">welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-  </ul>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install oracle-java6-installer</span>
+<span class="go">sudo apt-get install oracle-java7-installer</span>
+<span class="go">sudo apt-get install oracle-java8-installer</span></code></pre></div>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+<p>setting up JAVA_HOME variable to java-8-oracle</p>
 
-</div>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo update-alternatives --config java</span>
+<span class="go">export JAVA_HOME=/usr/lib/jvm/java-8-oracle</span>
+<span class="go">echo $JAVA_HOME</span></code></pre></div>
+
+  </div>
+
+</article>
 
       </div>
     </div>

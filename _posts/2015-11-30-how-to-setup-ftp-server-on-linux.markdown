@@ -27,4 +27,4 @@ pasv_min_port=8000
 pasv_max_port=8100
 {% endhighlight %}
 
-also don't forget to open these port in amazon console's security group.
+also don't forget to open these ports in amazon console's security group.
