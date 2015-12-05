@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>development blog</title>
-  <meta name="description" content="My name is Alex and this is my development blog.
-">
+  <title>install and use postgresql on linux</title>
+  <meta name="description" content="first we install postgresql:sudo apt-get updatesudo apt-get install postgresql postgresql-contrib">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/">
+  <link rel="canonical" href="micha-sky.github.io/deployment/2015/12/05/postgresql-on-linux.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -55,73 +54,37 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">install and use postgresql on linux</h1>
+    <p class="post-meta"><time datetime="2015-12-05T06:54:58+02:00" itemprop="datePublished">Dec 5, 2015</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Dec 5, 2015</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>first we install postgresql:</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/05/postgresql-on-linux.html">install and use postgresql on linux</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get update</span>
+<span class="go">sudo apt-get install postgresql postgresql-contrib</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/jenkins-and-glassfish-together.html">running jenkins and glassfish on one instance</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+<p>then, lets set password for postgres user:</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/setting-up-java-on-linux.html">set up java environment on ubuntu</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 30, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo su postgres</span>
+<span class="go">psql</span>
+<span class="go">\pasword postgres</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/development/2015/11/30/how-to-setup-ftp-server-on-linux.html">ftp server configuration on amazon ec2</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
+<p>after typing password exit the console. 
+\q</p>
 
-        <h2>
-          <a class="post-link" href="/development/2015/11/28/log4j-xml-file.html">log4j configuration file</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
+<p>now lets create a database. you can do it in PSQL console, but i prefer createdb utility:</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">how to set up jenkins project with glassfish</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 23, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">createdb -h localhost -p 5432 -U postgres yourdatabasename</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/jekyll/update/2015/11/23/welcome-to-jekyll.html">welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-  </ul>
+<p>where -h is host, -p is port and -U is user.</p>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+  </div>
 
-</div>
+</article>
 
       </div>
     </div>
