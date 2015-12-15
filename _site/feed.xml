@@ -6,9 +6,51 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 15 Dec 2015 15:07:04 +0200</pubDate>
-    <lastBuildDate>Tue, 15 Dec 2015 15:07:04 +0200</lastBuildDate>
+    <pubDate>Tue, 15 Dec 2015 19:24:59 +0200</pubDate>
+    <lastBuildDate>Tue, 15 Dec 2015 19:24:59 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>glassfish init script for linux</title>
+        <description>&lt;p&gt;glassfish init script for linux &lt;/p&gt;
+
+&lt;p&gt;create glassfish init file:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo vi /etc/init.d/glassfish&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;#&lt;/span&gt;!/bin/sh
+
+
+&lt;span class=&quot;go&quot;&gt;GLASSFISH_HOME=${GLASSFISH_HOME:-&amp;quot;/opt/glassfish/glassfish4&amp;quot;}&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;case &amp;quot;$1&amp;quot; in&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;start)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile start-domain domainname&amp;gt;/dev/null
+&lt;span class=&quot;go&quot;&gt;;;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;stop)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile stop-domain domainname &amp;gt;/dev/null
+&lt;span class=&quot;go&quot;&gt;;;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;restart)&lt;/span&gt;
+&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile restart-domain domainname&amp;gt;/dev/null
+&lt;span class=&quot;go&quot;&gt;;;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;\*)&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;echo &amp;quot;usage: $0 (start|stop|restart|help)&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;esac&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;/dev/null means that we redirect output to null device (simply hiding the ouput)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;pwdfile is path your glassfish password file&lt;/p&gt;
+</description>
+        <pubDate>Tue, 15 Dec 2015 19:39:58 +0200</pubDate>
+        <link>micha-sky.github.io/deployment/2015/12/15/glassfish-init-file.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/deployment/2015/12/15/glassfish-init-file.html</guid>
+        
+        
+        <category>deployment</category>
+        
+      </item>
     
       <item>
         <title>full webpage screenshots</title>
