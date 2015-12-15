@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>development blog</title>
-  <meta name="description" content="My name is Alex and this is my development blog.
-">
+  <title>linux commands execution in java</title>
+  <meta name="description" content="if you want to execute linux commands in java with multiple parameters and pipes (|)you need to:">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/">
+  <link rel="canonical" href="micha-sky.github.io/development/2015/12/15/linux-commands-in-java.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -55,81 +54,45 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">linux commands execution in java</h1>
+    <p class="post-meta"><time datetime="2015-12-15T12:35:58+02:00" itemprop="datePublished">Dec 15, 2015</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Dec 15, 2015</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>if you want to execute linux commands in java with multiple parameters and pipes (|)
+you need to:</p>
 
-        <h2>
-          <a class="post-link" href="/development/2015/12/15/linux-commands-in-java.html">linux commands execution in java</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 5, 2015</span>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">executeCommand</span><span class="o">(</span><span class="n">String</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">cmd</span> <span class="o">=</span> <span class="o">{</span>
+                <span class="s">&quot;/bin/sh&quot;</span><span class="o">,</span>
+                <span class="s">&quot;-c&quot;</span><span class="o">,</span>
+                <span class="n">command</span>
+        <span class="o">};</span>
+        <span class="n">StringBuilder</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">();</span>
+        <span class="n">Process</span> <span class="n">p</span><span class="o">;</span>
+        <span class="k">try</span> <span class="o">{</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="n">cmd</span><span class="o">);</span>
+            <span class="n">p</span><span class="o">.</span><span class="na">waitFor</span><span class="o">();</span>
+            <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span>
+                    <span class="k">new</span> <span class="nf">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+            <span class="n">String</span> <span class="n">line</span><span class="o">;</span>
+            <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">())!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">output</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">line</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">);</span>
+            <span class="o">}</span>
+        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
+    <span class="o">}</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/05/postgresql-on-linux.html">install and use postgresql on linux</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+<p>now you can pass commands wiht pipes as a regular string</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/jenkins-and-glassfish-together.html">running jenkins and glassfish on one instance</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+  </div>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/setting-up-java-on-linux.html">set up java environment on ubuntu</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 30, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/development/2015/11/30/how-to-setup-ftp-server-on-linux.html">ftp server configuration on amazon ec2</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/development/2015/11/28/log4j-xml-file.html">log4j configuration file</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">how to set up jenkins project with glassfish</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 23, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2015/11/23/welcome-to-jekyll.html">welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
-</div>
+</article>
 
       </div>
     </div>

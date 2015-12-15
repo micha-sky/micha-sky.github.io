@@ -15,7 +15,7 @@ then, lets set password for postgres user:
 {% highlight console %}
 sudo su postgres
 psql
-\pasword postgres
+\password postgres
 {% endhighlight %}
 
 after typing password exit the console. 
