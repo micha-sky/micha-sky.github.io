@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>development blog</title>
-  <meta name="description" content="My name is Alex and this is my development blog.
-">
+  <title>swapfile on amazon instance</title>
+  <meta name="description" content="amazon ec2 instance doesn’t have swapfile by default:sudo swapon -sthe output should show no swap files. we need to add a swap file for better instance perfo...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/">
+  <link rel="canonical" href="micha-sky.github.io/deployment/2015/12/26/swapfile-on-amazon-instance.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -55,129 +54,42 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <h1 class="page-heading">posts</h1>
+  <header class="post-header">
+    <h1 class="post-title" itemprop="name headline">swapfile on amazon instance</h1>
+    <p class="post-meta"><time datetime="2015-12-26T10:55:23+02:00" itemprop="datePublished">Dec 26, 2015</time></p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Dec 26, 2015</span>
+  <div class="post-content" itemprop="articleBody">
+    <p>amazon ec2 instance doesn’t have swapfile by default:</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/26/swapfile-on-amazon-instance.html">swapfile on amazon instance</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 23, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo swapon -s</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/development/2015/12/23/rails-environments.html">rails environments</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 23, 2015</span>
+<p>the output should show no swap files. we need to add a swap file for better instance performance.</p>
 
-        <h2>
-          <a class="post-link" href="/development/2015/12/23/ruby-strings-and-symbols.html">ruby strings and symbols</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 16, 2015</span>
+<p>we can create a 4gb file by typing:</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/16/sql-joins-expained.html">sql joins explained</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 15, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo fallocate -l 4G /swapfile</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/15/glassfish-init-file.html">glassfish init script for linux</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 15, 2015</span>
+<p>now we need to set permissions to file, so only root can write to it.</p>
 
-        <h2>
-          <a class="post-link" href="/development/2015/12/15/webpage-complete-screenshots.html">full webpage screenshots</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 15, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo chmod 600 /swapfile</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/development/2015/12/15/linux-commands-in-java.html">linux commands execution in java</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 5, 2015</span>
+<p>now let’s make a swap</p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/05/postgresql-on-linux.html">install and use postgresql on linux</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo mkswap /swapfile</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/jenkins-and-glassfish-together.html">running jenkins and glassfish on one instance</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Dec 4, 2015</span>
+<p>finally we need to enable a swap file </p>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/12/04/setting-up-java-on-linux.html">set up java environment on ubuntu</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 30, 2015</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo swapon -s</span></code></pre></div>
 
-        <h2>
-          <a class="post-link" href="/development/2015/11/30/how-to-setup-ftp-server-on-linux.html">ftp server configuration on amazon ec2</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
+<p>now the output of &gt;sudo swapon -s 
+will show that you have a 4gb swap file.</p>
 
-        <h2>
-          <a class="post-link" href="/development/2015/11/28/log4j-xml-file.html">log4j configuration file</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 28, 2015</span>
+  </div>
 
-        <h2>
-          <a class="post-link" href="/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">how to set up jenkins project with glassfish</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Nov 23, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/jekyll/update/2015/11/23/welcome-to-jekyll.html">welcome to Jekyll!</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
-
-</div>
+</article>
 
       </div>
     </div>
