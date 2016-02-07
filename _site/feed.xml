@@ -6,9 +6,49 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 26 Dec 2015 13:06:08 +0200</pubDate>
-    <lastBuildDate>Sat, 26 Dec 2015 13:06:08 +0200</lastBuildDate>
+    <pubDate>Sun, 07 Feb 2016 13:53:15 +0200</pubDate>
+    <lastBuildDate>Sun, 07 Feb 2016 13:53:15 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>installing ubuntu on server with raid1</title>
+        <description>&lt;p&gt;when installign any os on out-of-box server you have to remember that raid is not configured. you have to go to your raid controller menu and create volumes, otherwise you will not see them when installing linux.&lt;/p&gt;
+
+&lt;p&gt;another issue that can be faced during installing ubuntu on servers is black screen after successful installation. the solution is setting in GRUB loader to NOMODESET.
+press ‘e’ in your GRUB menu this will get you in editing mode.
+fing ‘quiet splash’ part there and replace to ‘nomodeset’&lt;/p&gt;
+
+&lt;p&gt;more info here:
+http://ubuntuforums.org/showthread.php?t=1613132&lt;/p&gt;
+</description>
+        <pubDate>Sat, 06 Feb 2016 16:30:23 +0200</pubDate>
+        <link>micha-sky.github.io/deployment/2016/02/06/installing-ubuntu-on-raid1.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/06/installing-ubuntu-on-raid1.html</guid>
+        
+        
+        <category>deployment</category>
+        
+      </item>
+    
+      <item>
+        <title>a href</title>
+        <description>&lt;p&gt;for those who ever wondered what does 
+&amp;lt;div class=&quot;highlight&quot;&amp;gt;&amp;lt;pre&amp;gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;&lt;/code&gt;&amp;lt;/pre&amp;gt;&amp;lt;/div&amp;gt;
+ means i did a little research.&lt;/p&gt;
+
+&lt;p&gt;it turns out that a stands for “anchor” and href for “hypertext reference”&lt;/p&gt;
+
+&lt;p&gt;also check out this blog where you can find the earliest HTML document in the web (look up the source code)
+http://2ndscale.com/rtomayko/2008/wtf-is-an-href-anyway&lt;/p&gt;
+</description>
+        <pubDate>Wed, 06 Jan 2016 18:22:23 +0200</pubDate>
+        <link>micha-sky.github.io/web/2016/01/06/a-href.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/web/2016/01/06/a-href.html</guid>
+        
+        
+        <category>web</category>
+        
+      </item>
     
       <item>
         <title>swapfile on amazon instance</title>
@@ -256,86 +296,6 @@ you need to:&lt;/p&gt;
         <pubDate>Sat, 05 Dec 2015 06:54:58 +0200</pubDate>
         <link>micha-sky.github.io/deployment/2015/12/05/postgresql-on-linux.html</link>
         <guid isPermaLink="true">micha-sky.github.io/deployment/2015/12/05/postgresql-on-linux.html</guid>
-        
-        
-        <category>deployment</category>
-        
-      </item>
-    
-      <item>
-        <title>running jenkins and glassfish on one instance</title>
-        <description>&lt;p&gt;installing jenkins. sudo su before this&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;echo deb http://pkg.jenkins-ci.org/debian binary/ &amp;gt; /etc/apt/sources.list.d/jenkins.list&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;apt-get update&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;apt-get install jenkins&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;check your jenkins dashboard: yourserver.com:8080
-Add admin user, uncheck “allow users to sign up”, configure matrix-based security, install git and bitbucket plugin.&lt;/p&gt;
-
-&lt;p&gt;now, let’s download and install glassfish 4.1&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;wget http://download.java.net/glassfish/4.1.1/release/glassfish-4.1.1.zip&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;sudo unzip glassfish-4.1.1.zip -d /opt&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;add glassfish to PATH variable&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;export PATH=/opt/glassfish4/bin:$PATH&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;run test domain, and wait for it to start, and then stop it&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin start-domain&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;asadmin stop-domain&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;now let’s create our domain, and set admin user/password for it&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin create-domain yourdomain&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;glassfish will choose random port, because jenkins already took 8080, so now we can run them together on one instance.&lt;/p&gt;
-
-</description>
-        <pubDate>Fri, 04 Dec 2015 01:39:58 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2015/12/04/jenkins-and-glassfish-together.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2015/12/04/jenkins-and-glassfish-together.html</guid>
-        
-        
-        <category>deployment</category>
-        
-      </item>
-    
-      <item>
-        <title>set up java environment on ubuntu</title>
-        <description>&lt;p&gt;this article is about setting up proper jre &amp;amp; jdk on ubuntu linux.&lt;/p&gt;
-
-&lt;p&gt;first, let’s install default jre &amp;amp; jdk&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install default-jre&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo apt-get install default-jdk&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;then we add webupd8team repository&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install python-software-properties&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo add-apt-repository ppa:webupd8team/java&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo apt-get update&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;let’s install oracle’s java 6,7,8&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install oracle-java6-installer&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo apt-get install oracle-java7-installer&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo apt-get install oracle-java8-installer&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;setting up JAVA_HOME variable to java-8-oracle&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo update-alternatives --config java&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;export JAVA_HOME=/usr/lib/jvm/java-8-oracle&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;echo $JAVA_HOME&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Fri, 04 Dec 2015 00:39:58 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2015/12/04/setting-up-java-on-linux.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2015/12/04/setting-up-java-on-linux.html</guid>
         
         
         <category>deployment</category>
