@@ -6,9 +6,74 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 07 Feb 2016 13:53:15 +0200</pubDate>
-    <lastBuildDate>Sun, 07 Feb 2016 13:53:15 +0200</lastBuildDate>
+    <pubDate>Mon, 29 Feb 2016 17:31:01 +0200</pubDate>
+    <lastBuildDate>Mon, 29 Feb 2016 17:31:01 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>setting up secure connection of glassfish</title>
+        <description>&lt;p&gt;before setting up ssl certificates i assume you have yor domain set set up, also glassfish master password and admin passwords. thats how you get an access to keystore files.&lt;/p&gt;
+
+&lt;p&gt;run following commands to list your certificates&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -list -v -keystore /opt/glassfish3/glassfish/domains/yourdomain/config/keystore.jks &lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;keytool -list -v -keystore /opt/glassfish3/glassfish/domains/yourdomain/config/cacerst.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;now we need to delete default certificates called s1as and glassfish instance from keystore.jks and cacerts.jks&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -delete -alias s1as -keystore keystore.jks&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;keytool -delete -alias glassfish-instance -keystore keystore.jks&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;keytool -delete -alias s1as -keystore cacerts.jks&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;keytool -delete -alias glassfish-instance -keystore keystore.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;now let’s generate keypairs and update our keystores&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -genkeypair -alias s1as -dname &amp;quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&amp;quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;keytool -genkeypair -alias glassfish-instance -dname &amp;quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&amp;quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;keytool -exportcert -alias s1as -file s1as.cert -keystore keystore.jks &lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;keytool -exportcert -alias glassfish-instance -file glassfish-instance.cert -keystore keystore.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;now let’s import certificates to keystores. type ‘yes’ when asked if trust certificates&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -importcert -alias s1as -file s1as.cert -keystore cacerts.jks&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;keytool -importcert -alias glassfish-instance -file glassfish-instance.cert -keystore cacerts.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;also don’t forget to change http-listener port to 443 (default https port)
+now restart your domain to apply changes.&lt;/p&gt;
+
+&lt;p&gt;for the more info check out this blog http://www.brain-dynamics.net/~chris_rennie/glassfish.html&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 23 Feb 2016 13:13:23 +0200</pubDate>
+        <link>micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html</guid>
+        
+        
+        <category>deployment</category>
+        
+      </item>
+    
+      <item>
+        <title>setting up mail server on ubuntu using postfix</title>
+        <description>&lt;p&gt;lets all the things we need for mailing&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install postfix mailutils courier-pop courier-imap&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;don’t forget to open necessary ports if you running on amazon (25, 143, POP, IMAP)&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 21 Feb 2016 15:13:23 +0200</pubDate>
+        <link>micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html</guid>
+        
+        
+        <category>deployment</category>
+        
+      </item>
     
       <item>
         <title>installing ubuntu on server with raid1</title>
@@ -16,7 +81,7 @@
 
 &lt;p&gt;another issue that can be faced during installing ubuntu on servers is black screen after successful installation. the solution is setting in GRUB loader to NOMODESET.
 press ‘e’ in your GRUB menu this will get you in editing mode.
-fing ‘quiet splash’ part there and replace to ‘nomodeset’&lt;/p&gt;
+fing ‘quiet splash’ part there and replace to ‘nomodeset’. hit ctrl+x to boot.&lt;/p&gt;
 
 &lt;p&gt;more info here:
 http://ubuntuforums.org/showthread.php?t=1613132&lt;/p&gt;
@@ -132,7 +197,7 @@ strings are surrounded by single or double quotes, symbols starts with colon.&lt
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hello&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;the other thing is that strings are mutable objects but symbols aren’t&lt;/p&gt;
+&lt;p&gt;the other thing is that strings are mutable objects but symbols aren’t. also each string has its own place in memory allocated. symbols share same space in heap&lt;/p&gt;
 </description>
         <pubDate>Wed, 23 Dec 2015 15:51:23 +0200</pubDate>
         <link>micha-sky.github.io/development/2015/12/23/ruby-strings-and-symbols.html</link>
@@ -229,76 +294,6 @@ saying left and right you have to think of tables to the left and right sides of
         
         
         <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>linux commands execution in java</title>
-        <description>&lt;p&gt;if you want to execute linux commands in java with multiple parameters and pipes (|)
-you need to:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;kd&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;executeCommand&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&amp;quot;/bin/sh&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;s&quot;&gt;&amp;quot;-c&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;command&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;};&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;StringBuilder&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;StringBuilder&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;Process&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Runtime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getRuntime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;().&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;exec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cmd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;waitFor&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;BufferedReader&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;
-                    &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;BufferedReader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;InputStreamReader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;getInputStream&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;()));&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;String&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;;&lt;/span&gt;
-            &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;reader&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;())!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-                &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;line&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;append&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;\n&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-            &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;printStackTrace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;output&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;toString&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;now you can pass commands wiht pipes as a regular string&lt;/p&gt;
-</description>
-        <pubDate>Tue, 15 Dec 2015 12:35:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2015/12/15/linux-commands-in-java.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2015/12/15/linux-commands-in-java.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>install and use postgresql on linux</title>
-        <description>&lt;p&gt;first we install postgresql:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get update&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;sudo apt-get install postgresql postgresql-contrib&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;then, lets set password for postgres user:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo su postgres&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;psql&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;\password postgres&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;after typing password exit the console. 
-\q&lt;/p&gt;
-
-&lt;p&gt;now lets create a database. you can do it in PSQL console, but i prefer createdb utility:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;createdb -h localhost -p 5432 -U postgres yourdatabasename&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;where -h is host, -p is port and -U is user.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 05 Dec 2015 06:54:58 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2015/12/05/postgresql-on-linux.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2015/12/05/postgresql-on-linux.html</guid>
-        
-        
-        <category>deployment</category>
         
       </item>
     

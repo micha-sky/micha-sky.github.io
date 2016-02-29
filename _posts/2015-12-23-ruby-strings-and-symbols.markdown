@@ -22,4 +22,4 @@ but string and symbol aren't
 => false
 {% endhighlight %}
 
-the other thing is that strings are mutable objects but symbols aren't
+the other thing is that strings are mutable objects but symbols aren't. also each string has its own place in memory allocated. symbols share same space in heap

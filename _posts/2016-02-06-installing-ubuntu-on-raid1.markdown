@@ -8,7 +8,7 @@ when installign any os on out-of-box server you have to remember that raid is no
 
 another issue that can be faced during installing ubuntu on servers is black screen after successful installation. the solution is setting in GRUB loader to NOMODESET.
 press 'e' in your GRUB menu this will get you in editing mode.
-fing 'quiet splash' part there and replace to 'nomodeset'
+fing 'quiet splash' part there and replace to 'nomodeset'. hit ctrl+x to boot.
 
 more info here:
 http://ubuntuforums.org/showthread.php?t=1613132

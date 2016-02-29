@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>ruby strings and symbols</title>
-  <meta name="description" content="i want to explain the difference between strings and symbols in ruby.strings are surrounded by single or double quotes, symbols starts with colon.">
+  <title>setting up secure connection of glassfish</title>
+  <meta name="description" content="before setting up ssl certificates i assume you have yor domain set set up, also glassfish master password and admin passwords. thats how you get an access t...">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2015/12/23/ruby-strings-and-symbols.html">
+  <link rel="canonical" href="micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,28 +57,46 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">ruby strings and symbols</h1>
-    <p class="post-meta"><time datetime="2015-12-23T15:51:23+02:00" itemprop="datePublished">Dec 23, 2015</time></p>
+    <h1 class="post-title" itemprop="name headline">setting up secure connection of glassfish</h1>
+    <p class="post-meta"><time datetime="2016-02-23T13:13:23+02:00" itemprop="datePublished">Feb 23, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>i want to explain the difference between strings and symbols in ruby.
-strings are surrounded by single or double quotes, symbols starts with colon.</p>
+    <p>before setting up ssl certificates i assume you have yor domain set set up, also glassfish master password and admin passwords. thats how you get an access to keystore files.</p>
 
-<p>strings are equal </p>
+<p>run following commands to list your certificates</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">&quot;hello&quot;</span> <span class="o">==</span> <span class="s1">&#39;hello&#39;</span>
-<span class="o">=&gt;</span> <span class="kp">true</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -list -v -keystore /opt/glassfish3/glassfish/domains/yourdomain/config/keystore.jks </span>
 
-<span class="ss">:hello</span> <span class="o">==</span> <span class="ss">:hello</span>
-<span class="o">=&gt;</span> <span class="kp">true</span></code></pre></div>
+<span class="go">keytool -list -v -keystore /opt/glassfish3/glassfish/domains/yourdomain/config/cacerst.jks</span></code></pre></div>
 
-<p>but string and symbol aren’t</p>
+<p>now we need to delete default certificates called s1as and glassfish instance from keystore.jks and cacerts.jks</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">&quot;hello&quot;</span> <span class="o">==</span> <span class="ss">:hello</span>
-<span class="o">=&gt;</span> <span class="kp">false</span></code></pre></div>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -delete -alias s1as -keystore keystore.jks</span>
+<span class="go">keytool -delete -alias glassfish-instance -keystore keystore.jks</span>
 
-<p>the other thing is that strings are mutable objects but symbols aren’t. also each string has its own place in memory allocated. symbols share same space in heap</p>
+<span class="go">keytool -delete -alias s1as -keystore cacerts.jks</span>
+<span class="go">keytool -delete -alias glassfish-instance -keystore keystore.jks</span></code></pre></div>
+
+<p>now let’s generate keypairs and update our keystores</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -genkeypair -alias s1as -dname &quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd</span>
+
+<span class="go">keytool -genkeypair -alias glassfish-instance -dname &quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd</span>
+
+<span class="go">keytool -exportcert -alias s1as -file s1as.cert -keystore keystore.jks </span>
+<span class="go">keytool -exportcert -alias glassfish-instance -file glassfish-instance.cert -keystore keystore.jks</span></code></pre></div>
+
+<p>now let’s import certificates to keystores. type ‘yes’ when asked if trust certificates</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -importcert -alias s1as -file s1as.cert -keystore cacerts.jks</span>
+<span class="go">keytool -importcert -alias glassfish-instance -file glassfish-instance.cert -keystore cacerts.jks</span></code></pre></div>
+
+<p>also don’t forget to change http-listener port to 443 (default https port)
+now restart your domain to apply changes.</p>
+
+<p>for the more info check out this blog http://www.brain-dynamics.net/~chris_rennie/glassfish.html</p>
+
 
   </div>
 
