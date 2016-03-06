@@ -6,8 +6,8 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 06 Mar 2016 10:50:16 +0200</pubDate>
-    <lastBuildDate>Sun, 06 Mar 2016 10:50:16 +0200</lastBuildDate>
+    <pubDate>Sun, 06 Mar 2016 19:27:27 +0200</pubDate>
+    <lastBuildDate>Sun, 06 Mar 2016 19:27:27 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -54,7 +54,7 @@
 
 &lt;p&gt;now let’s generate keypairs and update our keystores&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -genkeypair -alias s1as -dname &amp;quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&amp;quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -genkeypair -alias s1as -dname &amp;quot;CN=test.control-delivery.com.ua,OU=IT,O=Apitect,L=Kiev,S=Kiev,C=UA&amp;quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd&lt;/span&gt;
 
 &lt;span class=&quot;go&quot;&gt;keytool -genkeypair -alias glassfish-instance -dname &amp;quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&amp;quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd&lt;/span&gt;
 
@@ -71,6 +71,29 @@ now restart your domain to apply changes.&lt;/p&gt;
 
 &lt;p&gt;for the more info check out this blog http://www.brain-dynamics.net/~chris_rennie/glassfish.html&lt;/p&gt;
 
+&lt;p&gt;if you using comodo certificates you need to do following stuff:&lt;/p&gt;
+
+&lt;p&gt;concatenate certificates into a bundle&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;cat domain_com.crt domain_com.ca-bundle &amp;gt; ssl-bundle.crt&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;import bundle certificate into keystore&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -import -trustcacerts -alias root_alias_name -file bundle.crt -keystore cacerts.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;type ‘yes’ to accept it&lt;/p&gt;
+
+&lt;p&gt;important thing: create a p12 file&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;openssl pkcs12 -export -in bundle.crt -inkey mydomain.key -out mydomain.p12 -name mydomain_alias_name&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;where mydomain.key is an output from ‘certreq’ command.&lt;/p&gt;
+
+&lt;p&gt;now import p12 file into keystore&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -importkeystore -deststorepass masterpassword -destkeypass masterpassword -destkeystore keystore.jks   -srckeystore mydomain.p12 -srcstoretype PKCS12 -srcstorepass masterpassword -alias mydomain_alias_name&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;now restart glassfish, and don’t forget to set up http listeners in glassfish for new certificate alias.&lt;/p&gt;
 </description>
         <pubDate>Tue, 23 Feb 2016 13:13:23 +0200</pubDate>
         <link>micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html</link>

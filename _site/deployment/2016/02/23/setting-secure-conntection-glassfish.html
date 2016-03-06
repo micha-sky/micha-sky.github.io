@@ -80,7 +80,7 @@
 
 <p>now let’s generate keypairs and update our keystores</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -genkeypair -alias s1as -dname &quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd</span>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -genkeypair -alias s1as -dname &quot;CN=test.control-delivery.com.ua,OU=IT,O=Apitect,L=Kiev,S=Kiev,C=UA&quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd</span>
 
 <span class="go">keytool -genkeypair -alias glassfish-instance -dname &quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd</span>
 
@@ -97,6 +97,29 @@ now restart your domain to apply changes.</p>
 
 <p>for the more info check out this blog http://www.brain-dynamics.net/~chris_rennie/glassfish.html</p>
 
+<p>if you using comodo certificates you need to do following stuff:</p>
+
+<p>concatenate certificates into a bundle</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">cat domain_com.crt domain_com.ca-bundle &gt; ssl-bundle.crt</span></code></pre></div>
+
+<p>import bundle certificate into keystore</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -import -trustcacerts -alias root_alias_name -file bundle.crt -keystore cacerts.jks</span></code></pre></div>
+
+<p>type ‘yes’ to accept it</p>
+
+<p>important thing: create a p12 file</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">openssl pkcs12 -export -in bundle.crt -inkey mydomain.key -out mydomain.p12 -name mydomain_alias_name</span></code></pre></div>
+
+<p>where mydomain.key is an output from ‘certreq’ command.</p>
+
+<p>now import p12 file into keystore</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">keytool -importkeystore -deststorepass masterpassword -destkeypass masterpassword -destkeystore keystore.jks   -srckeystore mydomain.p12 -srcstoretype PKCS12 -srcstorepass masterpassword -alias mydomain_alias_name</span></code></pre></div>
+
+<p>now restart glassfish, and don’t forget to set up http listeners in glassfish for new certificate alias.</p>
 
   </div>
 
