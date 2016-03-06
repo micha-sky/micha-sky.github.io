@@ -6,9 +6,33 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Feb 2016 17:31:01 +0200</pubDate>
-    <lastBuildDate>Mon, 29 Feb 2016 17:31:01 +0200</lastBuildDate>
+    <pubDate>Sun, 06 Mar 2016 10:50:16 +0200</pubDate>
+    <lastBuildDate>Sun, 06 Mar 2016 10:50:16 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>https in spring application</title>
+        <description>&lt;p&gt;if you want to use only https connection you have to add following security to your web.xml file:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;security-constraint&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;web-resource-collection&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;web-resource-name&amp;gt;&lt;/span&gt;YourApplication&lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-resource-name&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;url-pattern&amp;gt;&lt;/span&gt;/*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url-pattern&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;http-method&amp;gt;&lt;/span&gt;GET&lt;span class=&quot;nt&quot;&gt;&amp;lt;/http-method&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-resource-collection&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;user-data-constraint&amp;gt;&lt;/span&gt;
+            &lt;span class=&quot;nt&quot;&gt;&amp;lt;transport-guarantee&amp;gt;&lt;/span&gt;CONFIDENTIAL&lt;span class=&quot;nt&quot;&gt;&amp;lt;/transport-guarantee&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/user-data-constraint&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/security-constraint&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sat, 05 Mar 2016 13:57:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/03/05/https-only-in-spring.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/05/https-only-in-spring.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>setting up secure connection of glassfish</title>
@@ -59,12 +83,12 @@ now restart your domain to apply changes.&lt;/p&gt;
     
       <item>
         <title>setting up mail server on ubuntu using postfix</title>
-        <description>&lt;p&gt;lets all the things we need for mailing&lt;/p&gt;
+        <description>&lt;p&gt;lets install the things we need for mailing&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install postfix mailutils courier-pop courier-imap&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;p&gt;don’t forget to open necessary ports if you running on amazon (25, 143, POP, IMAP)&lt;/p&gt;
-
+&lt;p&gt;don’t forget to open necessary ports if you running on amazon (25, 143, POP, IMAP)
+also you need to make sure that you created MX-record &lt;/p&gt;
 </description>
         <pubDate>Sun, 21 Feb 2016 15:13:23 +0200</pubDate>
         <link>micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html</link>
@@ -277,23 +301,6 @@ saying left and right you have to think of tables to the left and right sides of
         
         
         <category>deployment</category>
-        
-      </item>
-    
-      <item>
-        <title>full webpage screenshots</title>
-        <description>&lt;p&gt;if you are a web developer sometimes you need to make screenshots of your web pages. you can use printcreen button, but you can’t capture web page completely than way.&lt;/p&gt;
-
-&lt;p&gt;in this case you can use firefox: press shift + f2 and type in&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;screenshot --fullpage filename.png&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Tue, 15 Dec 2015 15:35:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2015/12/15/webpage-complete-screenshots.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2015/12/15/webpage-complete-screenshots.html</guid>
-        
-        
-        <category>development</category>
         
       </item>
     

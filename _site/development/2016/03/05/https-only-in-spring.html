@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>setting up mail server on ubuntu using postfix</title>
-  <meta name="description" content="lets install the things we need for mailingsudo apt-get install postfix mailutils courier-pop courier-imap">
+  <title>https in spring application</title>
+  <meta name="description" content="if you want to use only https connection you have to add following security to your web.xml file:">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html">
+  <link rel="canonical" href="micha-sky.github.io/development/2016/03/05/https-only-in-spring.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,17 +57,23 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">setting up mail server on ubuntu using postfix</h1>
-    <p class="post-meta"><time datetime="2016-02-21T15:13:23+02:00" itemprop="datePublished">Feb 21, 2016</time></p>
+    <h1 class="post-title" itemprop="name headline">https in spring application</h1>
+    <p class="post-meta"><time datetime="2016-03-05T13:57:58+02:00" itemprop="datePublished">Mar 5, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>lets install the things we need for mailing</p>
+    <p>if you want to use only https connection you have to add following security to your web.xml file:</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install postfix mailutils courier-pop courier-imap</span></code></pre></div>
-
-<p>don’t forget to open necessary ports if you running on amazon (25, 143, POP, IMAP)
-also you need to make sure that you created MX-record </p>
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="nt">&lt;security-constraint&gt;</span>
+        <span class="nt">&lt;web-resource-collection&gt;</span>
+            <span class="nt">&lt;web-resource-name&gt;</span>YourApplication<span class="nt">&lt;/web-resource-name&gt;</span>
+            <span class="nt">&lt;url-pattern&gt;</span>/*<span class="nt">&lt;/url-pattern&gt;</span>
+            <span class="nt">&lt;http-method&gt;</span>GET<span class="nt">&lt;/http-method&gt;</span>
+        <span class="nt">&lt;/web-resource-collection&gt;</span>
+        <span class="nt">&lt;user-data-constraint&gt;</span>
+            <span class="nt">&lt;transport-guarantee&gt;</span>CONFIDENTIAL<span class="nt">&lt;/transport-guarantee&gt;</span>
+        <span class="nt">&lt;/user-data-constraint&gt;</span>
+    <span class="nt">&lt;/security-constraint&gt;</span></code></pre></div>
 
   </div>
 
