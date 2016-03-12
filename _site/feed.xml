@@ -6,9 +6,54 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 06 Mar 2016 19:27:27 +0200</pubDate>
-    <lastBuildDate>Sun, 06 Mar 2016 19:27:27 +0200</lastBuildDate>
+    <pubDate>Sat, 12 Mar 2016 11:59:34 +0200</pubDate>
+    <lastBuildDate>Sat, 12 Mar 2016 11:59:34 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>manage postgres backups with jenkins</title>
+        <description>&lt;p&gt;with jenkins you can use it also for backing up your postgres database scheduled with cron.&lt;/p&gt;
+
+&lt;p&gt;i assume you have jenkins user in system.
+login as user postgres and go to psql console:
+create user jenkins in psql:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;now we need to grant permissions for this user:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yourdatabase&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yourdatabase&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USAGE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SEQUENCES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sat, 12 Mar 2016 11:19:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/03/12/postgres-backup-with-jenkins.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/12/postgres-backup-with-jenkins.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>mysql2 gem in ruby on rails 4</title>
+        <description>
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;mysql2&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;0.3.8&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Sat, 05 Mar 2016 13:57:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/03/05/mysql2-gem-in-ruby-on-rails.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/05/mysql2-gem-in-ruby-on-rails.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>https in spring application</title>
@@ -252,78 +297,6 @@ strings are surrounded by single or double quotes, symbols starts with colon.&lt
         
         
         <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>sql joins explained</title>
-        <description>&lt;p&gt;here i want to explain the difference between inner, left, right joins in sql.
-saying left and right you have to think of tables to the left and right sides of join expression.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;inner&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;join&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;inner join returns records from left table that are present in right table.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;left&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;join&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;left join is similar to inner, but if there is no related records in right table, it will return nulls.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;right&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;join&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;returns all record from the right table that are present in the left one.&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;full&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;join&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;there’s also a full join that returns all records from all tables and puts nulls where records does’nt exist.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 16 Dec 2015 19:38:58 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2015/12/16/sql-joins-expained.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2015/12/16/sql-joins-expained.html</guid>
-        
-        
-        <category>deployment</category>
-        
-      </item>
-    
-      <item>
-        <title>glassfish init script for linux</title>
-        <description>&lt;p&gt;glassfish init script for linux &lt;/p&gt;
-
-&lt;p&gt;create glassfish init file:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo vi /etc/init.d/glassfish&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;gp&quot;&gt;#&lt;/span&gt;!/bin/sh
-
-
-&lt;span class=&quot;go&quot;&gt;GLASSFISH_HOME=${GLASSFISH_HOME:-&amp;quot;/opt/glassfish/glassfish4&amp;quot;}&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;case &amp;quot;$1&amp;quot; in&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;start)&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile start-domain domainname&amp;gt;/dev/null
-&lt;span class=&quot;go&quot;&gt;;;&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;stop)&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile stop-domain domainname &amp;gt;/dev/null
-&lt;span class=&quot;go&quot;&gt;;;&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;restart)&lt;/span&gt;
-&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt;GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile restart-domain domainname&amp;gt;/dev/null
-&lt;span class=&quot;go&quot;&gt;;;&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;\*)&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;echo &amp;quot;usage: $0 (start|stop|restart|help)&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;esac&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;/dev/null means that we redirect output to null device (simply hiding the ouput)&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;pwdfile is path your glassfish password file&lt;/p&gt;
-</description>
-        <pubDate>Tue, 15 Dec 2015 19:39:58 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2015/12/15/glassfish-init-file.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2015/12/15/glassfish-init-file.html</guid>
-        
-        
-        <category>deployment</category>
         
       </item>
     
