@@ -6,9 +6,26 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 12 Mar 2016 11:59:34 +0200</pubDate>
-    <lastBuildDate>Sat, 12 Mar 2016 11:59:34 +0200</lastBuildDate>
+    <pubDate>Mon, 14 Mar 2016 16:47:15 +0200</pubDate>
+    <lastBuildDate>Mon, 14 Mar 2016 16:47:15 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>favicon in ruby on rails 4</title>
+        <description>&lt;p&gt;if you need to add favicon to your ror application &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;favicon_link_tag&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;favicon.png&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;favicon.png should be located in your assets/images/ directory.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 14 Mar 2016 16:46:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/03/14/favicon-in-ruby-on-rails.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/14/favicon-in-ruby-on-rails.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>manage postgres backups with jenkins</title>
@@ -43,8 +60,11 @@ create user jenkins in psql:&lt;/p&gt;
     
       <item>
         <title>mysql2 gem in ruby on rails 4</title>
-        <description>
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;mysql2&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;0.3.8&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        <description>&lt;p&gt;if you getting errors with your mysql gem in ruby on rails 4 you need to fix your Gemfile like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;mysql2&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;0.3.18&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;this downgrades mysql2 gem to 0.3.18 version&lt;/p&gt;
 </description>
         <pubDate>Sat, 05 Mar 2016 13:57:58 +0200</pubDate>
         <link>micha-sky.github.io/development/2016/03/05/mysql2-gem-in-ruby-on-rails.html</link>
@@ -265,35 +285,6 @@ corresponding configuration file in config/environments/ folder.   &lt;/p&gt;
         <pubDate>Wed, 23 Dec 2015 18:40:23 +0200</pubDate>
         <link>micha-sky.github.io/development/2015/12/23/rails-environments.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2015/12/23/rails-environments.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>ruby strings and symbols</title>
-        <description>&lt;p&gt;i want to explain the difference between strings and symbols in ruby.
-strings are surrounded by single or double quotes, symbols starts with colon.&lt;/p&gt;
-
-&lt;p&gt;strings are equal &lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;ss&quot;&gt;:hello&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hello&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;but string and symbol aren’t&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;hello&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hello&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;the other thing is that strings are mutable objects but symbols aren’t. also each string has its own place in memory allocated. symbols share same space in heap&lt;/p&gt;
-</description>
-        <pubDate>Wed, 23 Dec 2015 15:51:23 +0200</pubDate>
-        <link>micha-sky.github.io/development/2015/12/23/ruby-strings-and-symbols.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2015/12/23/ruby-strings-and-symbols.html</guid>
         
         
         <category>development</category>
