@@ -6,9 +6,37 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 16 Mar 2016 19:51:21 +0200</pubDate>
-    <lastBuildDate>Wed, 16 Mar 2016 19:51:21 +0200</lastBuildDate>
+    <pubDate>Thu, 17 Mar 2016 16:14:04 +0200</pubDate>
+    <lastBuildDate>Thu, 17 Mar 2016 16:14:04 +0200</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>ruby tricky questions</title>
+        <description>&lt;p&gt;here’s some tricky questions i got on interviews&lt;/p&gt;
+
+&lt;p&gt;difference between Date.today &amp;amp; Date.current&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Returns Time.zone.today when &amp;lt;tt&amp;gt;Time.zone&amp;lt;/tt&amp;gt; or &amp;lt;tt&amp;gt;config.time_zone&amp;lt;/tt&amp;gt; are     set, otherwise just returns Date.today.&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;current&lt;/span&gt;
+    &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;today&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;today&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;difference between save &amp;amp; save!
+save! will raise an error if not successful
+save will return true or fase&lt;/p&gt;
+
+&lt;p&gt;difference between find and find_by
+find will raise an error
+find_by will return nil if not founds&lt;/p&gt;
+</description>
+        <pubDate>Thu, 17 Mar 2016 15:33:23 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/03/17/ruby-tricky-questions.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/17/ruby-tricky-questions.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>ruby idioms</title>
@@ -324,26 +352,6 @@ also you need to make sure that you created MX-record &lt;/p&gt;
         <pubDate>Sun, 21 Feb 2016 15:13:23 +0200</pubDate>
         <link>micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html</link>
         <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html</guid>
-        
-        
-        <category>deployment</category>
-        
-      </item>
-    
-      <item>
-        <title>installing ubuntu on server with raid1</title>
-        <description>&lt;p&gt;when installign any os on out-of-box server you have to remember that raid is not configured. you have to go to your raid controller menu and create volumes, otherwise you will not see them when installing linux.&lt;/p&gt;
-
-&lt;p&gt;another issue that can be faced during installing ubuntu on servers is black screen after successful installation. the solution is setting in GRUB loader to NOMODESET.
-press ‘e’ in your GRUB menu this will get you in editing mode.
-fing ‘quiet splash’ part there and replace to ‘nomodeset’. hit ctrl+x to boot.&lt;/p&gt;
-
-&lt;p&gt;more info here:
-http://ubuntuforums.org/showthread.php?t=1613132&lt;/p&gt;
-</description>
-        <pubDate>Sat, 06 Feb 2016 16:30:23 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2016/02/06/installing-ubuntu-on-raid1.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/06/installing-ubuntu-on-raid1.html</guid>
         
         
         <category>deployment</category>
