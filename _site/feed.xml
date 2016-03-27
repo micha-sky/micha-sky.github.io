@@ -6,9 +6,27 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 17 Mar 2016 16:14:04 +0200</pubDate>
-    <lastBuildDate>Thu, 17 Mar 2016 16:14:04 +0200</lastBuildDate>
+    <pubDate>Sun, 27 Mar 2016 20:38:48 +0300</pubDate>
+    <lastBuildDate>Sun, 27 Mar 2016 20:38:48 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>glassfish debug mode</title>
+        <description>&lt;p&gt;i found out that when you using glassfish and you need a debug mode.
+to enable debug mode export environment variable&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;export AS_DEBUG=true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;it’s pretty helpful sometimes&lt;/p&gt;
+</description>
+        <pubDate>Sun, 27 Mar 2016 21:36:58 +0300</pubDate>
+        <link>micha-sky.github.io/deployment/2016/03/27/glassfish-debug.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/03/27/glassfish-debug.html</guid>
+        
+        
+        <category>deployment</category>
+        
+      </item>
     
       <item>
         <title>ruby tricky questions</title>
@@ -334,24 +352,6 @@ now restart your domain to apply changes.&lt;/p&gt;
         <pubDate>Tue, 23 Feb 2016 13:13:23 +0200</pubDate>
         <link>micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html</link>
         <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html</guid>
-        
-        
-        <category>deployment</category>
-        
-      </item>
-    
-      <item>
-        <title>setting up mail server on ubuntu using postfix</title>
-        <description>&lt;p&gt;lets install the things we need for mailing&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install postfix mailutils courier-pop courier-imap&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;don’t forget to open necessary ports if you running on amazon (25, 143, POP, IMAP)
-also you need to make sure that you created MX-record &lt;/p&gt;
-</description>
-        <pubDate>Sun, 21 Feb 2016 15:13:23 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html</guid>
         
         
         <category>deployment</category>
