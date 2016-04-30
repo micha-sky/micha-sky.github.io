@@ -6,9 +6,37 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 07 Apr 2016 15:13:36 +0300</pubDate>
-    <lastBuildDate>Thu, 07 Apr 2016 15:13:36 +0300</lastBuildDate>
+    <pubDate>Sat, 30 Apr 2016 14:05:09 +0300</pubDate>
+    <lastBuildDate>Sat, 30 Apr 2016 14:05:09 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>handy linux commands</title>
+        <description>&lt;p&gt;prints file sizes in megabytes&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -l --block-size=M&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;counts files in directory&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -1 | wc -l&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;sorts files by time (-tr to reverse order)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -t -l&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;sorts files by size (-Sr to reverse)&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -S -l&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Wed, 30 Mar 2016 14:33:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/03/30/handy-linux-commands.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/30/handy-linux-commands.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>glassfish debug mode</title>
@@ -285,76 +313,6 @@ create user jenkins in psql:&lt;/p&gt;
         
         
         <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>setting up secure connection of glassfish</title>
-        <description>&lt;p&gt;before setting up ssl certificates i assume you have yor domain set set up, also glassfish master password and admin passwords. thats how you get an access to keystore files.&lt;/p&gt;
-
-&lt;p&gt;run following commands to list your certificates&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -list -v -keystore /opt/glassfish3/glassfish/domains/yourdomain/config/keystore.jks &lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;keytool -list -v -keystore /opt/glassfish3/glassfish/domains/yourdomain/config/cacerst.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;now we need to delete default certificates called s1as and glassfish instance from keystore.jks and cacerts.jks&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -delete -alias s1as -keystore keystore.jks&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;keytool -delete -alias glassfish-instance -keystore keystore.jks&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;keytool -delete -alias s1as -keystore cacerts.jks&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;keytool -delete -alias glassfish-instance -keystore keystore.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;now let’s generate keypairs and update our keystores&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -genkeypair -alias s1as -dname &amp;quot;CN=test.control-delivery.com.ua,OU=IT,O=Apitect,L=Kiev,S=Kiev,C=UA&amp;quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;keytool -genkeypair -alias glassfish-instance -dname &amp;quot;CN=serverDomainName,OU=someUnit,O=someOrg,L=someCity,S=someState,C=XX&amp;quot; -keyalg RSA -keysize 2048 -validity 3650 -keystore keystore.jks -keypass myMasterPwd -storepass myMasterPwd&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;keytool -exportcert -alias s1as -file s1as.cert -keystore keystore.jks &lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;keytool -exportcert -alias glassfish-instance -file glassfish-instance.cert -keystore keystore.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;now let’s import certificates to keystores. type ‘yes’ when asked if trust certificates&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -importcert -alias s1as -file s1as.cert -keystore cacerts.jks&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;keytool -importcert -alias glassfish-instance -file glassfish-instance.cert -keystore cacerts.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;also don’t forget to change http-listener port to 443 (default https port)
-now restart your domain to apply changes.&lt;/p&gt;
-
-&lt;p&gt;for the more info check out this blog http://www.brain-dynamics.net/~chris_rennie/glassfish.html&lt;/p&gt;
-
-&lt;p&gt;if you using comodo certificates you need to do following stuff:&lt;/p&gt;
-
-&lt;p&gt;concatenate certificates into a bundle&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;cat domain_com.crt domain_com.ca-bundle &amp;gt; ssl-bundle.crt&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;import bundle certificate into keystore&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -import -trustcacerts -alias root_alias_name -file bundle.crt -keystore cacerts.jks&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;type ‘yes’ to accept it&lt;/p&gt;
-
-&lt;p&gt;important thing: create a p12 file&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;openssl pkcs12 -export -in bundle.crt -inkey mydomain.key -out mydomain.p12 -name mydomain_alias_name&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;where mydomain.key is an output from ‘certreq’ command.&lt;/p&gt;
-
-&lt;p&gt;now import p12 file into keystore&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;keytool -importkeystore -deststorepass masterpassword -destkeypass masterpassword -destkeystore keystore.jks   -srckeystore mydomain.p12 -srcstoretype PKCS12 -srcstorepass masterpassword -alias mydomain_alias_name&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;now restart glassfish, and don’t forget to set up http listeners in glassfish for new certificate alias.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 23 Feb 2016 13:13:23 +0200</pubDate>
-        <link>micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/02/23/setting-secure-conntection-glassfish.html</guid>
-        
-        
-        <category>deployment</category>
         
       </item>
     

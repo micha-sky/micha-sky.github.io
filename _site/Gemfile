@@ -1,3 +1,7 @@
+
+source 'https://rubygems.org'
+
+
 gem 'github-pages'
 gem 'jekyll-coffeescript'
 gem 'rake'
