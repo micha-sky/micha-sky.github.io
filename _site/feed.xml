@@ -6,9 +6,31 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 30 Apr 2016 14:05:09 +0300</pubDate>
-    <lastBuildDate>Sat, 30 Apr 2016 14:05:09 +0300</lastBuildDate>
+    <pubDate>Mon, 09 May 2016 10:19:25 +0300</pubDate>
+    <lastBuildDate>Mon, 09 May 2016 10:19:25 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>redis shutdown issues</title>
+        <description>&lt;p&gt;when using redis servers with password authentication you may experience problems with shutting down server.
+it took sometimes up to 5 minutes to shut down server until i foudn out that redis was the problem.&lt;/p&gt;
+
+&lt;p&gt;the solution si simple: edit the /etc/init.d/redis_6379  file to “stop” section&lt;/p&gt;
+
+&lt;p&gt;add -a “yourredispassword”&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;CLIEXEC -p $REDISPORT shutdown&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;then your redis service will shutdown quickly&lt;/p&gt;
+</description>
+        <pubDate>Mon, 09 May 2016 11:17:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/05/09/redis-shutdown-issues.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/05/09/redis-shutdown-issues.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>handy linux commands</title>
@@ -286,30 +308,6 @@ create user jenkins in psql:&lt;/p&gt;
         <pubDate>Sat, 05 Mar 2016 13:57:58 +0200</pubDate>
         <link>micha-sky.github.io/development/2016/03/05/mysql2-gem-in-ruby-on-rails.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/03/05/mysql2-gem-in-ruby-on-rails.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>https in spring application</title>
-        <description>&lt;p&gt;if you want to use only https connection you have to add following security to your web.xml file:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-xml&quot; data-lang=&quot;xml&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;security-constraint&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;web-resource-collection&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;web-resource-name&amp;gt;&lt;/span&gt;YourApplication&lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-resource-name&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;url-pattern&amp;gt;&lt;/span&gt;/*&lt;span class=&quot;nt&quot;&gt;&amp;lt;/url-pattern&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;http-method&amp;gt;&lt;/span&gt;GET&lt;span class=&quot;nt&quot;&gt;&amp;lt;/http-method&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/web-resource-collection&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;user-data-constraint&amp;gt;&lt;/span&gt;
-            &lt;span class=&quot;nt&quot;&gt;&amp;lt;transport-guarantee&amp;gt;&lt;/span&gt;CONFIDENTIAL&lt;span class=&quot;nt&quot;&gt;&amp;lt;/transport-guarantee&amp;gt;&lt;/span&gt;
-        &lt;span class=&quot;nt&quot;&gt;&amp;lt;/user-data-constraint&amp;gt;&lt;/span&gt;
-    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/security-constraint&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Sat, 05 Mar 2016 13:57:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/05/https-only-in-spring.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/05/https-only-in-spring.html</guid>
         
         
         <category>development</category>
