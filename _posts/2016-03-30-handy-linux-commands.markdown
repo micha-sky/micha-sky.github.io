@@ -24,3 +24,8 @@ sorts files by size (-Sr to reverse)
 {% highlight console %}
 ls -S -l
 {% endhighlight %}
+
+find files containig text
+{% highlight console %}
+grep -r TEXT *
+{% endhighlight %}
