@@ -19,4 +19,4 @@ navigation
 hjkl
 
 go to the end of file:
-G
+G or gg

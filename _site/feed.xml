@@ -6,9 +6,127 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 06 Jun 2016 19:16:58 +0300</pubDate>
-    <lastBuildDate>Mon, 06 Jun 2016 19:16:58 +0300</lastBuildDate>
+    <pubDate>Tue, 05 Jul 2016 16:08:17 +0300</pubDate>
+    <lastBuildDate>Tue, 05 Jul 2016 16:08:17 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>event triggers in ubuntu</title>
+        <description>&lt;p&gt;if you need to run scripts based on file creation or deletion or whatever you will use inoify interface in linux.&lt;/p&gt;
+
+&lt;p&gt;the tool i use is incron it allows to watch the directory and run scripts based on event&lt;/p&gt;
+
+&lt;p&gt;to install in type&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install incron&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;after that you need to create tables for user&lt;/p&gt;
+
+&lt;p&gt;to install in type&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo vi /etc/incron.allow&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and add user root and save it. this means root user can use crontab.&lt;/p&gt;
+
+&lt;p&gt;to access cronab just type &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo incrontab -e&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;it is similar to cron, so you can type -r to remove table or -l to list jobs.&lt;/p&gt;
+
+&lt;p&gt;the basic patter is&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;&amp;lt;PATH&amp;gt; &amp;lt;EVENT&amp;gt; ACTION&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;events are:&lt;/p&gt;
+
+&lt;p&gt;IN_ACCESS           File was accessed (read) (&lt;em&gt;)
+IN_ATTRIB           Metadata changed (permissions, timestamps, extended attributes, etc.) (&lt;/em&gt;)
+IN_CLOSE_WRITE      File opened for writing was closed (&lt;em&gt;)
+IN_CLOSE_NOWRITE    File not opened for writing was closed (&lt;/em&gt;)
+IN_CREATE           File/directory created in watched directory (&lt;em&gt;)
+IN_DELETE           File/directory deleted from watched directory (&lt;/em&gt;)
+IN_DELETE_SELF           Watched file/directory was itself deleted
+IN_MODIFY           File was modified (&lt;em&gt;)
+IN_MOVE_SELF        Watched file/directory was itself moved
+IN_MOVED_FROM       File moved out of watched directory (&lt;/em&gt;)
+IN_MOVED_TO         File moved into watched directory (&lt;em&gt;)
+IN_OPEN             File was opened (&lt;/em&gt;)&lt;/p&gt;
+
+&lt;p&gt;wildcards are used to pass filename to script:
+$$   dollar sign
+$@   watched filesystem path (see above)
+$#   event-related file name
+$%   event flags (textually)
+$&amp;amp;   event flags (numerically)&lt;/p&gt;
+
+&lt;p&gt;all logs are written lo /var/log/syslog&lt;/p&gt;
+</description>
+        <pubDate>Fri, 01 Jul 2016 11:58:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/07/01/event-triggers-in-ubuntu.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/07/01/event-triggers-in-ubuntu.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>installing caffe neural net on ubuntu</title>
+        <description>if you want to use google&#39;s deep dream you surely need to install caffe deep learning framework
+
+i won&#39;t describe cloning caffe from github (duh) so let&#39;s get going
+
+
+i assume we won&#39;t use CUDA (it&#39;s a whole new story) so you need to make following changes in Makefile.config.example 
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;CPU_ONLY := 1&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+then 
+
+make all
+make test
+make runtest
+
+you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
+
+</description>
+        <pubDate>Sat, 25 Jun 2016 08:05:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>nginx upgrade issues</title>
+        <description>&lt;p&gt;if you upgrading to ubuntu 16 xenial which comes with nginx 1.10 you might experience with upgrade issues.&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 20 Jun 2016 09:23:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>nginx upgrade issues</title>
+        <description>if you upgrading to ubuntu 16</description>
+        <pubDate>Mon, 20 Jun 2016 09:23:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>redis shutdown issues</title>
@@ -208,109 +326,6 @@ find_by will return nil if not founds&lt;/p&gt;
         <pubDate>Wed, 16 Mar 2016 08:23:58 +0200</pubDate>
         <link>micha-sky.github.io/development/2016/03/16/method-calling-in-ruby.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/03/16/method-calling-in-ruby.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>glassfish response headers</title>
-        <description>&lt;p&gt;i recently noticed that by deafault glassfish returns some interesing headers with every response.
-try this out:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;curl -I yourdomain.com&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;HTTP/1.1 405 Request method &amp;amp;#39;HEAD&amp;amp;#39; not supported&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Server: GlassFish Server Open Source Edition  4.1.1 &lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1.1  Java/Oracle Corporation/1.8)&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Allow: GET&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Content-Length: 1214&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Content-Language: &lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Content-Type: text/html;charset=UTF-8&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Date: Tue, 15 Mar 2016 05:49:05 GMT&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;if you don’t find these headers neccesary (neither do i) you can disable with&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin set server.network-config.protocols.protocol.http-listener-1.http.xpowered-by=false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or in glassfish web interface.&lt;/p&gt;
-
-&lt;p&gt;this leaves out server header. to replace it we need to create jvm option called “product name”&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin create-jvm-options -Dproduct.name=&amp;quot;MyProduct&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or in web interface.
-don’t forget to restart your domain. &lt;/p&gt;
-</description>
-        <pubDate>Tue, 15 Mar 2016 07:55:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/15/glassfish-http-headers.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/15/glassfish-http-headers.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>favicon in ruby on rails 4</title>
-        <description>&lt;p&gt;if you need to add favicon to your ror application &lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;favicon_link_tag&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;favicon.png&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;favicon.png should be located in your assets/images/ directory.&lt;/p&gt;
-</description>
-        <pubDate>Mon, 14 Mar 2016 16:46:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/14/favicon-in-ruby-on-rails.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/14/favicon-in-ruby-on-rails.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>manage postgres backups with jenkins</title>
-        <description>&lt;p&gt;with jenkins you can use it also for backing up your postgres database scheduled with cron.&lt;/p&gt;
-
-&lt;p&gt;i assume you have jenkins user in system.
-login as user postgres and go to psql console:
-create user jenkins in psql:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;create&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;now we need to grant permissions for this user:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sql&quot; data-lang=&quot;sql&quot;&gt;&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;CONNECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;DATABASE&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yourdatabase&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yourdatabase&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;USAGE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;SEQUENCES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;GRANT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SELECT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ON&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;ALL&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TABLES&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;IN&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;SCHEMA&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TO&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;jenkins&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Sat, 12 Mar 2016 11:19:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/12/postgres-backup-with-jenkins.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/12/postgres-backup-with-jenkins.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>mysql2 gem in ruby on rails 4</title>
-        <description>&lt;p&gt;if you getting errors with your mysql gem in ruby on rails 4 you need to fix your Gemfile like this:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;mysql2&amp;#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;0.3.18&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;this downgrades mysql2 gem to 0.3.18 version&lt;/p&gt;
-</description>
-        <pubDate>Sat, 05 Mar 2016 13:57:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/05/mysql2-gem-in-ruby-on-rails.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/05/mysql2-gem-in-ruby-on-rails.html</guid>
         
         
         <category>development</category>
