@@ -6,8 +6,8 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 05 Jul 2016 16:08:17 +0300</pubDate>
-    <lastBuildDate>Tue, 05 Jul 2016 16:08:17 +0300</lastBuildDate>
+    <pubDate>Tue, 05 Jul 2016 16:10:19 +0300</pubDate>
+    <lastBuildDate>Tue, 05 Jul 2016 16:10:19 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
@@ -73,24 +73,23 @@ $&amp;amp;   event flags (numerically)&lt;/p&gt;
     
       <item>
         <title>installing caffe neural net on ubuntu</title>
-        <description>if you want to use google&#39;s deep dream you surely need to install caffe deep learning framework
+        <description>&lt;p&gt;if you want to use google’s deep dream you surely need to install caffe deep learning framework&lt;/p&gt;
 
-i won&#39;t describe cloning caffe from github (duh) so let&#39;s get going
+&lt;p&gt;i won’t describe cloning caffe from github (duh) so let’s get going&lt;/p&gt;
 
-
-i assume we won&#39;t use CUDA (it&#39;s a whole new story) so you need to make following changes in Makefile.config.example 
+&lt;p&gt;i assume we won’t use CUDA (it’s a whole new story) so you need to make following changes in Makefile.config.example &lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;CPU_ONLY := 1&lt;/span&gt;
 
 &lt;span class=&quot;go&quot;&gt;INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-then 
+&lt;p&gt;then &lt;/p&gt;
 
-make all
+&lt;p&gt;make all
 make test
-make runtest
+make runtest&lt;/p&gt;
 
-you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
+&lt;p&gt;you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 25 Jun 2016 08:05:58 +0300</pubDate>
@@ -104,21 +103,8 @@ you may want to add -j 4 to those commands to run run in 4 or whatever parallel 
     
       <item>
         <title>nginx upgrade issues</title>
-        <description>&lt;p&gt;if you upgrading to ubuntu 16 xenial which comes with nginx 1.10 you might experience with upgrade issues.&lt;/p&gt;
-
+        <description>&lt;p&gt;if you upgrading to ubuntu 16&lt;/p&gt;
 </description>
-        <pubDate>Mon, 20 Jun 2016 09:23:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>nginx upgrade issues</title>
-        <description>if you upgrading to ubuntu 16</description>
         <pubDate>Mon, 20 Jun 2016 09:23:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</guid>
@@ -326,6 +312,44 @@ find_by will return nil if not founds&lt;/p&gt;
         <pubDate>Wed, 16 Mar 2016 08:23:58 +0200</pubDate>
         <link>micha-sky.github.io/development/2016/03/16/method-calling-in-ruby.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/03/16/method-calling-in-ruby.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>glassfish response headers</title>
+        <description>&lt;p&gt;i recently noticed that by deafault glassfish returns some interesing headers with every response.
+try this out:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;curl -I yourdomain.com&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;HTTP/1.1 405 Request method &amp;amp;#39;HEAD&amp;amp;#39; not supported&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Server: GlassFish Server Open Source Edition  4.1.1 &lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1.1  Java/Oracle Corporation/1.8)&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Allow: GET&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Content-Length: 1214&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Content-Language: &lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Content-Type: text/html;charset=UTF-8&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;Date: Tue, 15 Mar 2016 05:49:05 GMT&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;if you don’t find these headers neccesary (neither do i) you can disable with&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin set server.network-config.protocols.protocol.http-listener-1.http.xpowered-by=false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or in glassfish web interface.&lt;/p&gt;
+
+&lt;p&gt;this leaves out server header. to replace it we need to create jvm option called “product name”&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin create-jvm-options -Dproduct.name=&amp;quot;MyProduct&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;or in web interface.
+don’t forget to restart your domain. &lt;/p&gt;
+</description>
+        <pubDate>Tue, 15 Mar 2016 07:55:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/03/15/glassfish-http-headers.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/15/glassfish-http-headers.html</guid>
         
         
         <category>development</category>
