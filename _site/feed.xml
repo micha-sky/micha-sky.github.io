@@ -6,16 +6,21 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 27 Mar 2017 16:06:04 +0300</pubDate>
-    <lastBuildDate>Mon, 27 Mar 2017 16:06:04 +0300</lastBuildDate>
+    <pubDate>Mon, 27 Mar 2017 17:01:59 +0300</pubDate>
+    <lastBuildDate>Mon, 27 Mar 2017 17:01:59 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
     
       <item>
         <title>data interpolation with excel</title>
-        <description>&lt;p&gt;Select 2 cells range -&amp;gt; Fill -&amp;gt; Series -&amp;gt; Profit&lt;/p&gt;
+        <description>&lt;p&gt;Select 2 cells you want to create range between
+right click -&amp;gt; Fill -&amp;gt; Series -&amp;gt; Profit&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;&#39;images/screenshot1.png&#39;&quot; alt=&quot;image1&quot; class=&quot;img-responsive&quot; /&gt;
-&lt;img src=&quot;micha-sky.github.io/assets/screenshot1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;it will automatically fill all cells with equal step which is pretty cool when you have a lot of data
+with gaps that needs to be interpolated&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/screenshot1.png&quot; alt=&quot;image1&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/screenshot2.png&quot; alt=&quot;image2&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Thu, 24 Nov 2016 11:24:58 +0200</pubDate>
         <link>micha-sky.github.io/development/2016/11/24/data-interpolation-with-excel.html</link>
@@ -66,14 +71,15 @@
     
       <item>
         <title>watershed delineation with arcmap</title>
-        <description>&lt;p&gt;simple steps:
-- get dem (http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp)
-- fill dem (fills sinks in raster data)
-- flow direction
-- flow accumulation
-- point and outlet, snap pour point
-- watershed
-- viola&lt;/p&gt;
+        <description>&lt;p&gt;simple steps for delineation of watershed :
+* get dem (digital elevation model) for needed region 
+(http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp)
+* fill dem (fills sinks in raster data)
+* flow direction
+* flow accumulation
+* point and outlet, snap pour point
+* watershed
+* viola&lt;/p&gt;
 </description>
         <pubDate>Sat, 09 Jul 2016 11:23:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2016/07/09/watershed-delineation-with-arcmap.html</link>
