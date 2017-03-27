@@ -5,4 +5,6 @@ date:   2016-11-24 11:24:58 +0200
 categories: development
 ---
 Select 2 cells range -> Fill -> Series -> Profit
-![image-title-here](/path/to/image.jpg){:class="img-responsive"}
+
+![image1]('images/screenshot1.png'){:class="img-responsive"}
+![my photo]({{ site.url }}/assets/screenshot1.png)

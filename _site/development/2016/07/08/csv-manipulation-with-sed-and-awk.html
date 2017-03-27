@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>installing caffe neural net on ubuntu</title>
-  <meta name="description" content="if you want to use google's deep dream you surely need to install caffe deep learning framework">
+  <title>csv manipulation with sed and awk</title>
+  <meta name="description" content="if you have huge file and you need to split it into pieces by 40MBsplit --bytes 40M --numeric-suffixes --suffix-length=3 file.csv spl">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html">
+  <link rel="canonical" href="micha-sky.github.io/development/2016/07/08/csv-manipulation-with-sed-and-awk.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,29 +57,30 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">installing caffe neural net on ubuntu</h1>
-    <p class="post-meta"><time datetime="2016-06-25T08:05:58+03:00" itemprop="datePublished">Jun 25, 2016</time></p>
+    <h1 class="post-title" itemprop="name headline">csv manipulation with sed and awk</h1>
+    <p class="post-meta"><time datetime="2016-07-08T09:23:58+03:00" itemprop="datePublished">Jul 8, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    if you want to use google's deep dream you surely need to install caffe deep learning framework
+    <p>if you have huge file and you need to split it into pieces by 40MB</p>
 
-i won't describe cloning caffe from github (duh) so let's get going
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">split --bytes 40M --numeric-suffixes --suffix-length=3 file.csv spl</span></code></pre></div>
 
+<p>split file by 150 lines with -l parameter. spl is prefix for split files</p>
 
-i assume we won't use CUDA (it's a whole new story) so you need to make following changes in Makefile.config.example before renaming in to Makefile.config
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">split --l 150 --numeric-suffixes --suffix-length=3 file.csv spl</span></code></pre></div>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">CPU_ONLY := 1</span>
+<p>count number o lines with wc command. -l indicates lines</p>
 
-<span class="go">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/</span></code></pre></div>
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">wc -l file.csv</span></code></pre></div>
 
-then 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">make all</span>
-<span class="go">make test</span>
-<span class="go">make runtest</span></code></pre></div>
+<p>remove whitespace from file with sed </p>
 
-you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sed -i &#39;/^$/d&#39; file.csv</span></code></pre></div>
 
+<p>select columns 1-3 from file to newfile</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">cut -d, -f1-3 file.csv &gt; newfile.csv</span></code></pre></div>
 
   </div>
 

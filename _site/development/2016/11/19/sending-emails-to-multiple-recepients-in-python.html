@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>installing caffe neural net on ubuntu</title>
-  <meta name="description" content="if you want to use google's deep dream you surely need to install caffe deep learning framework">
+  <title>sending emails to multiple recepients in python</title>
+  <meta name="description" content="You need to understand the difference between the visible address of an email, and the delivery.">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html">
+  <link rel="canonical" href="micha-sky.github.io/development/2016/11/19/sending-emails-to-multiple-recepients-in-python.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,29 +57,24 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">installing caffe neural net on ubuntu</h1>
-    <p class="post-meta"><time datetime="2016-06-25T08:05:58+03:00" itemprop="datePublished">Jun 25, 2016</time></p>
+    <h1 class="post-title" itemprop="name headline">sending emails to multiple recepients in python</h1>
+    <p class="post-meta"><time datetime="2016-11-19T10:04:58+02:00" itemprop="datePublished">Nov 19, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    if you want to use google's deep dream you surely need to install caffe deep learning framework
+    <p>You need to understand the difference between the visible address of an email, and the delivery.</p>
 
-i won't describe cloning caffe from github (duh) so let's get going
+<p>msg[“To”] is essentially what is printed on the letter. It doesn’t actually have any effect. Except that your email client, just like the regular post officer, will assume that this is who you want to send the email to.</p>
 
+<p>The actual delivery however can work quite different. So you can drop the email (or a copy) into the post box of someone completely different.</p>
 
-i assume we won't use CUDA (it's a whole new story) so you need to make following changes in Makefile.config.example before renaming in to Makefile.config
+<p>There are various reasons for this. For example forwarding. The To: header field doesn’t change on forwarding, however the email is dropped into a different mailbox.</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">CPU_ONLY := 1</span>
+<p>The smtp.sendmail command now takes care of the actual delivery. email.Message is the contents of the letter only, not the delivery.</p>
 
-<span class="go">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/</span></code></pre></div>
+<p>In low-level SMTP, you need to give the receipients one-by-one, which is why a list of adresses (not including names!) is the sensible API.</p>
 
-then 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">make all</span>
-<span class="go">make test</span>
-<span class="go">make runtest</span></code></pre></div>
-
-you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
-
+<p>For the header, it can also contain for example the name, e.g. To: First Last <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#101;&#109;&#097;&#105;&#108;&#064;&#097;&#100;&#100;&#114;&#046;&#116;&#108;&#100;">&#101;&#109;&#097;&#105;&#108;&#064;&#097;&#100;&#100;&#114;&#046;&#116;&#108;&#100;</a>, Other User <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#111;&#116;&#104;&#101;&#114;&#064;&#109;&#097;&#105;&#108;&#046;&#116;&#108;&#100;">&#111;&#116;&#104;&#101;&#114;&#064;&#109;&#097;&#105;&#108;&#046;&#116;&#108;&#100;</a>. Your code example therefore is not recommended, as it will fail delivering this mail, since just by splitting it on , you still not not have the valid adresses!</p>
 
   </div>
 

@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>installing caffe neural net on ubuntu</title>
-  <meta name="description" content="if you want to use google's deep dream you surely need to install caffe deep learning framework">
+  <title>data interpolation with excel</title>
+  <meta name="description" content="Select 2 cells range -&gt; Fill -&gt; Series -&gt; Profit">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html">
+  <link rel="canonical" href="micha-sky.github.io/development/2016/11/24/data-interpolation-with-excel.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,29 +57,15 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">installing caffe neural net on ubuntu</h1>
-    <p class="post-meta"><time datetime="2016-06-25T08:05:58+03:00" itemprop="datePublished">Jun 25, 2016</time></p>
+    <h1 class="post-title" itemprop="name headline">data interpolation with excel</h1>
+    <p class="post-meta"><time datetime="2016-11-24T11:24:58+02:00" itemprop="datePublished">Nov 24, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    if you want to use google's deep dream you surely need to install caffe deep learning framework
+    <p>Select 2 cells range -&gt; Fill -&gt; Series -&gt; Profit</p>
 
-i won't describe cloning caffe from github (duh) so let's get going
-
-
-i assume we won't use CUDA (it's a whole new story) so you need to make following changes in Makefile.config.example before renaming in to Makefile.config
-
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">CPU_ONLY := 1</span>
-
-<span class="go">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/</span></code></pre></div>
-
-then 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">make all</span>
-<span class="go">make test</span>
-<span class="go">make runtest</span></code></pre></div>
-
-you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
-
+<p><img src="'images/screenshot1.png'" alt="image1" class="img-responsive" />
+<img src="micha-sky.github.io/assets/screenshot1.png" alt="my photo" /></p>
 
   </div>
 

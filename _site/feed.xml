@@ -6,9 +6,127 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 05 Jul 2016 16:10:19 +0300</pubDate>
-    <lastBuildDate>Tue, 05 Jul 2016 16:10:19 +0300</lastBuildDate>
+    <pubDate>Mon, 27 Mar 2017 16:06:04 +0300</pubDate>
+    <lastBuildDate>Mon, 27 Mar 2017 16:06:04 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>data interpolation with excel</title>
+        <description>&lt;p&gt;Select 2 cells range -&amp;gt; Fill -&amp;gt; Series -&amp;gt; Profit&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;&#39;images/screenshot1.png&#39;&quot; alt=&quot;image1&quot; class=&quot;img-responsive&quot; /&gt;
+&lt;img src=&quot;micha-sky.github.io/assets/screenshot1.png&quot; alt=&quot;my photo&quot; /&gt;&lt;/p&gt;
+</description>
+        <pubDate>Thu, 24 Nov 2016 11:24:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/11/24/data-interpolation-with-excel.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/11/24/data-interpolation-with-excel.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>sending emails to multiple recepients in python</title>
+        <description>&lt;p&gt;You need to understand the difference between the visible address of an email, and the delivery.&lt;/p&gt;
+
+&lt;p&gt;msg[“To”] is essentially what is printed on the letter. It doesn’t actually have any effect. Except that your email client, just like the regular post officer, will assume that this is who you want to send the email to.&lt;/p&gt;
+
+&lt;p&gt;The actual delivery however can work quite different. So you can drop the email (or a copy) into the post box of someone completely different.&lt;/p&gt;
+
+&lt;p&gt;There are various reasons for this. For example forwarding. The To: header field doesn’t change on forwarding, however the email is dropped into a different mailbox.&lt;/p&gt;
+
+&lt;p&gt;The smtp.sendmail command now takes care of the actual delivery. email.Message is the contents of the letter only, not the delivery.&lt;/p&gt;
+
+&lt;p&gt;In low-level SMTP, you need to give the receipients one-by-one, which is why a list of adresses (not including names!) is the sensible API.&lt;/p&gt;
+
+&lt;p&gt;For the header, it can also contain for example the name, e.g. To: First Last &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#101;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#064;&amp;#097;&amp;#100;&amp;#100;&amp;#114;&amp;#046;&amp;#116;&amp;#108;&amp;#100;&quot;&gt;&amp;#101;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#064;&amp;#097;&amp;#100;&amp;#100;&amp;#114;&amp;#046;&amp;#116;&amp;#108;&amp;#100;&lt;/a&gt;, Other User &lt;a href=&quot;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#116;&amp;#111;:&amp;#111;&amp;#116;&amp;#104;&amp;#101;&amp;#114;&amp;#064;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#116;&amp;#108;&amp;#100;&quot;&gt;&amp;#111;&amp;#116;&amp;#104;&amp;#101;&amp;#114;&amp;#064;&amp;#109;&amp;#097;&amp;#105;&amp;#108;&amp;#046;&amp;#116;&amp;#108;&amp;#100;&lt;/a&gt;. Your code example therefore is not recommended, as it will fail delivering this mail, since just by splitting it on , you still not not have the valid adresses!&lt;/p&gt;
+</description>
+        <pubDate>Sat, 19 Nov 2016 10:04:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/11/19/sending-emails-to-multiple-recepients-in-python.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/11/19/sending-emails-to-multiple-recepients-in-python.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>scraping public information from facebook</title>
+        <description>
+</description>
+        <pubDate>Wed, 16 Nov 2016 16:38:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/11/16/scraping-public-data-from-facebook.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/11/16/scraping-public-data-from-facebook.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>watershed delineation with arcmap</title>
+        <description>&lt;p&gt;simple steps:
+- get dem (http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp)
+- fill dem (fills sinks in raster data)
+- flow direction
+- flow accumulation
+- point and outlet, snap pour point
+- watershed
+- viola&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 Jul 2016 11:23:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/07/09/watershed-delineation-with-arcmap.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/07/09/watershed-delineation-with-arcmap.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>deployment of rails application to linux server</title>
+        <description>&lt;p&gt;this artile assumes you have a working rails applicaition running on localhost.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 09 Jul 2016 11:16:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/07/09/deploying-rails-app-to-linux-server.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/07/09/deploying-rails-app-to-linux-server.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>csv manipulation with sed and awk</title>
+        <description>&lt;p&gt;if you have huge file and you need to split it into pieces by 40MB&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;split --bytes 40M --numeric-suffixes --suffix-length=3 file.csv spl&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;split file by 150 lines with -l parameter. spl is prefix for split files&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;split --l 150 --numeric-suffixes --suffix-length=3 file.csv spl&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;count number o lines with wc command. -l indicates lines&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;wc -l file.csv&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;remove whitespace from file with sed &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sed -i &amp;#39;/^$/d&amp;#39; file.csv&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;select columns 1-3 from file to newfile&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;cut -d, -f1-3 file.csv &amp;gt; newfile.csv&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+        <pubDate>Fri, 08 Jul 2016 09:23:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/07/08/csv-manipulation-with-sed-and-awk.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/07/08/csv-manipulation-with-sed-and-awk.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>event triggers in ubuntu</title>
@@ -40,11 +158,15 @@
 
 &lt;p&gt;events are:&lt;/p&gt;
 
-&lt;p&gt;IN_ACCESS           File was accessed (read) (&lt;em&gt;)
-IN_ATTRIB           Metadata changed (permissions, timestamps, extended attributes, etc.) (&lt;/em&gt;)
-IN_CLOSE_WRITE      File opened for writing was closed (&lt;em&gt;)
-IN_CLOSE_NOWRITE    File not opened for writing was closed (&lt;/em&gt;)
-IN_CREATE           File/directory created in watched directory (&lt;em&gt;)
+&lt;p&gt;IN_ACCESS           File was accessed (read) (*)&lt;/p&gt;
+
+&lt;p&gt;IN_ATTRIB           Metadata changed (permissions, timestamps, extended attributes, etc.) (*)&lt;/p&gt;
+
+&lt;p&gt;IN_CLOSE_WRITE      File opened for writing was closed (*)&lt;/p&gt;
+
+&lt;p&gt;IN_CLOSE_NOWRITE    File not opened for writing was closed (*)&lt;/p&gt;
+
+&lt;p&gt;IN_CREATE           File/directory created in watched directory (&lt;em&gt;)
 IN_DELETE           File/directory deleted from watched directory (&lt;/em&gt;)
 IN_DELETE_SELF           Watched file/directory was itself deleted
 IN_MODIFY           File was modified (&lt;em&gt;)
@@ -53,8 +175,9 @@ IN_MOVED_FROM       File moved out of watched directory (&lt;/em&gt;)
 IN_MOVED_TO         File moved into watched directory (&lt;em&gt;)
 IN_OPEN             File was opened (&lt;/em&gt;)&lt;/p&gt;
 
-&lt;p&gt;wildcards are used to pass filename to script:
-$$   dollar sign
+&lt;p&gt;wildcards are used to pass filename to script:&lt;/p&gt;
+
+&lt;p&gt;$$   dollar sign
 $@   watched filesystem path (see above)
 $#   event-related file name
 $%   event flags (textually)
@@ -85,11 +208,45 @@ $&amp;amp;   event flags (numerically)&lt;/p&gt;
 
 &lt;p&gt;then &lt;/p&gt;
 
-&lt;p&gt;make all
-make test
-make runtest&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;make all&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;make test&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;make runtest&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run&lt;/p&gt;
+
+&lt;p&gt;also important&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;export PYTHONPATH=/home/username/caffe/python&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Sat, 25 Jun 2016 08:05:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>installing caffe neural net on ubuntu</title>
+        <description>if you want to use google&#39;s deep dream you surely need to install caffe deep learning framework
+
+i won&#39;t describe cloning caffe from github (duh) so let&#39;s get going
+
+
+i assume we won&#39;t use CUDA (it&#39;s a whole new story) so you need to make following changes in Makefile.config.example before renaming in to Makefile.config
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;CPU_ONLY := 1&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+then 
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;make all&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;make test&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;make runtest&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
 
 </description>
         <pubDate>Sat, 25 Jun 2016 08:05:58 +0300</pubDate>
@@ -104,252 +261,18 @@ make runtest&lt;/p&gt;
       <item>
         <title>nginx upgrade issues</title>
         <description>&lt;p&gt;if you upgrading to ubuntu 16&lt;/p&gt;
+
+&lt;p&gt;dpkg: error processing archive /var/cache/apt/archives/nginx-extras_1%3a1.10.1-8.5.0.29~trusty1_amd64.deb (–unpack):
+ trying to overwrite ‘/usr/sbin/nginx’, which is also in package nginx 1.11.2-1~trusty
+ dpkg-deb: subprocess paste killed by signal (Broken pipe)&lt;/p&gt;
+
+&lt;p&gt;sudo apt-get install -f&lt;/p&gt;
+
+&lt;p&gt;sudo dpkg -i –force overwrite /var/cache/apt/archives/nginx-common_1%3a1.10.1-8.5.0.29~trusty1_all.deb&lt;/p&gt;
 </description>
         <pubDate>Mon, 20 Jun 2016 09:23:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>redis shutdown issues</title>
-        <description>&lt;p&gt;when using redis servers with password authentication you may experience problems with shutting down server.
-it took sometimes up to 5 minutes to shut down server until i foudn out that redis was the problem.&lt;/p&gt;
-
-&lt;p&gt;the solution si simple: edit the /etc/init.d/redis_6379  file to “stop” section&lt;/p&gt;
-
-&lt;p&gt;add -a “yourredispassword”&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;CLIEXEC -p $REDISPORT shutdown&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;then your redis service will shutdown quickly&lt;/p&gt;
-</description>
-        <pubDate>Mon, 09 May 2016 11:17:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/05/09/redis-shutdown-issues.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/05/09/redis-shutdown-issues.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>handy linux commands</title>
-        <description>&lt;p&gt;prints file sizes in megabytes&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -l --block-size=M&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;counts files in directory&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -1 | wc -l&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;sorts files by time (-tr to reverse order)&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -t -l&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;sorts files by size (-Sr to reverse)&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;ls -S -l&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;find files containig text&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;grep -r TEXT *&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Wed, 30 Mar 2016 14:33:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/03/30/handy-linux-commands.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/30/handy-linux-commands.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>glassfish debug mode</title>
-        <description>&lt;p&gt;i found out that when you using glassfish and you need a debug mode.
-to enable debug mode export environment variable&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;export AS_DEBUG=true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;it’s pretty helpful sometimes&lt;/p&gt;
-</description>
-        <pubDate>Sun, 27 Mar 2016 21:36:58 +0300</pubDate>
-        <link>micha-sky.github.io/deployment/2016/03/27/glassfish-debug.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/deployment/2016/03/27/glassfish-debug.html</guid>
-        
-        
-        <category>deployment</category>
-        
-      </item>
-    
-      <item>
-        <title>ruby tricky questions</title>
-        <description>&lt;p&gt;here’s some tricky questions i got on interviews&lt;/p&gt;
-
-&lt;p&gt;difference between Date.today &amp;amp; Date.current&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Returns Time.zone.today when &amp;lt;tt&amp;gt;Time.zone&amp;lt;/tt&amp;gt; or &amp;lt;tt&amp;gt;config.time_zone&amp;lt;/tt&amp;gt; are     set, otherwise just returns Date.today.&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;current&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;?&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Time&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;zone&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;today&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Date&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;today&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;difference between save &amp;amp; save!
-save! will raise an error if not successful
-save will return true or fase&lt;/p&gt;
-
-&lt;p&gt;difference between find and find_by
-find will raise an error
-find_by will return nil if not founds&lt;/p&gt;
-</description>
-        <pubDate>Thu, 17 Mar 2016 15:33:23 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/17/ruby-tricky-questions.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/17/ruby-tricky-questions.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>ruby idioms</title>
-        <description>&lt;p&gt;unless works like if not&lt;/p&gt;
-
-&lt;p&gt;until is while not&lt;/p&gt;
-
-&lt;p&gt;swap values: x, y = y, x&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;FILE&lt;/strong&gt; - name of current source file&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;__FILE__&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;$0 - name of top level program executed&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;024&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$0&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;irb&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;$: is array of paths&lt;/p&gt;
-
-&lt;p&gt;$! is current exeption raised. nil if no exeption being raised&lt;/p&gt;
-
-&lt;p&gt;$SAFE is current safe level&lt;/p&gt;
-
-&lt;p&gt;ENV is hash of environment vairables&lt;/p&gt;
-
-&lt;p&gt;methods ending wiht ‘?’ are boolean&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;ok&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;filename&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;methods ending wiht ‘!’ modify current object&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;   hello world   &amp;quot;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;strip!&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;str&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# -&amp;gt; &amp;quot;hello world&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;= or-equal operator&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;a&lt;/td&gt;
-      &lt;td&gt; &lt;/td&gt;
-      &lt;td&gt;= b means assign b to a if a is nil or false&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;nil&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;||=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;ruby’s getters and setters are attr_reader, attr_writer and attr_accessor&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Awesome&lt;/span&gt;
-	&lt;span class=&quot;kp&quot;&gt;attr_accessor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:date&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;ruby’s analog to try-catch-finally is begin-rescue-ensure&lt;/p&gt;
-
-&lt;p&gt;== operator checks if two ojects are equal
-.eql?  check if objects types and values are equal
-.equal? checks if two object are the same object&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;
-
-&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;eql?&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Wed, 16 Mar 2016 09:33:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/16/ruby-idioms.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/16/ruby-idioms.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>method calling in ruby</title>
-        <description>&lt;p&gt;there are three ways of calling method in ruby: dot operator, Object#send and method(:foo).call&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;object_id&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20826000&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:object_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20826000&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;object&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:object_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20826000&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Wed, 16 Mar 2016 08:23:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/16/method-calling-in-ruby.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/16/method-calling-in-ruby.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>glassfish response headers</title>
-        <description>&lt;p&gt;i recently noticed that by deafault glassfish returns some interesing headers with every response.
-try this out:&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;curl -I yourdomain.com&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;HTTP/1.1 405 Request method &amp;amp;#39;HEAD&amp;amp;#39; not supported&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Server: GlassFish Server Open Source Edition  4.1.1 &lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1.1  Java/Oracle Corporation/1.8)&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Allow: GET&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Content-Length: 1214&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Content-Language: &lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Content-Type: text/html;charset=UTF-8&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;Date: Tue, 15 Mar 2016 05:49:05 GMT&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;if you don’t find these headers neccesary (neither do i) you can disable with&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin set server.network-config.protocols.protocol.http-listener-1.http.xpowered-by=false&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or in glassfish web interface.&lt;/p&gt;
-
-&lt;p&gt;this leaves out server header. to replace it we need to create jvm option called “product name”&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;asadmin create-jvm-options -Dproduct.name=&amp;quot;MyProduct&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;or in web interface.
-don’t forget to restart your domain. &lt;/p&gt;
-</description>
-        <pubDate>Tue, 15 Mar 2016 07:55:58 +0200</pubDate>
-        <link>micha-sky.github.io/development/2016/03/15/glassfish-http-headers.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/03/15/glassfish-http-headers.html</guid>
         
         
         <category>development</category>

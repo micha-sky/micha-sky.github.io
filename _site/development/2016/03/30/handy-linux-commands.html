@@ -82,6 +82,23 @@
 
 <div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">grep -r TEXT *</span></code></pre></div>
 
+<p>if you want to download a list of files</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">wget -i &lt;urls class=&quot;txt&quot;&gt;&lt;/urls&gt;</span></code></pre></div>
+
+<p>add prefix to all .csv files in directory</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">for file in *.csv; do   mv &quot;$file&quot; &quot;preix_${file}&quot;; done</span></code></pre></div>
+
+<p>upgrade all pip packages (caraful may beak some versions dependencies)</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">pip freeze --local | grep -v &#39;^\-e&#39; | cut -d = -f 1  | xargs -n1 sudo pip install -U</span></code></pre></div>
+
+<p>copy file contents to clipboard</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">cat ~/.ssh/id_rsa | xclip -sel clip</span></code></pre></div>
+
+
   </div>
 
 </article>
