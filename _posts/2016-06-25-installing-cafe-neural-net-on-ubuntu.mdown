@@ -9,7 +9,7 @@ if you want to use google's deep dream you surely need to install caffe deep lea
 i won't describe cloning caffe from github (duh) so let's get going
 
 
-i assume we won't use CUDA (it's a whole new story) so you need to make following changes in Makefile.config.example 
+i assume we won't use CUDA (it's a whole new story) so you need to make following changes in Makefile.config.example before renaming in to Makefile.config
 
 {% highlight console %}
 CPU_ONLY := 1
@@ -26,7 +26,3 @@ make runtest
 
 you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
 
-also important
-{% highlight console %}
-export PYTHONPATH=/home/username/caffe/python
-{% endhighlight %}

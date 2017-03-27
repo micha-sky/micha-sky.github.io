@@ -37,9 +37,13 @@ the basic patter is
 events are:
 
 IN_ACCESS           File was accessed (read) (*)
+
 IN_ATTRIB           Metadata changed (permissions, timestamps, extended attributes, etc.) (*)
+
 IN_CLOSE_WRITE      File opened for writing was closed (*)
+
 IN_CLOSE_NOWRITE    File not opened for writing was closed (*)
+
 IN_CREATE           File/directory created in watched directory (*)
 IN_DELETE           File/directory deleted from watched directory (*)
 IN_DELETE_SELF           Watched file/directory was itself deleted
@@ -50,6 +54,7 @@ IN_MOVED_TO         File moved into watched directory (*)
 IN_OPEN             File was opened (*)
 
 wildcards are used to pass filename to script:
+
 $$   dollar sign
 $@   watched filesystem path (see above)
 $#   event-related file name
