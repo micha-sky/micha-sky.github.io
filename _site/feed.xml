@@ -6,9 +6,35 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 27 Mar 2017 17:01:59 +0300</pubDate>
-    <lastBuildDate>Mon, 27 Mar 2017 17:01:59 +0300</lastBuildDate>
+    <pubDate>Tue, 04 Apr 2017 11:21:15 +0300</pubDate>
+    <lastBuildDate>Tue, 04 Apr 2017 11:21:15 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>how to center a div</title>
+        <description>&lt;p&gt;&lt;img src=&quot;/assets/css.png&quot; alt=&quot;image1&quot; class=&quot;img-responsive&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;the funniest thing is that it’s ablolutely true&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.parent&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;relative&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-css&quot; data-lang=&quot;css&quot;&gt;&lt;span class=&quot;nc&quot;&gt;.child&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;absolute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;top&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;transform&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;translateY&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;-50%&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 24 Nov 2016 11:24:58 +0200</pubDate>
+        <link>micha-sky.github.io/development/2016/11/24/how-to-center-a-div.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/11/24/how-to-center-a-div.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>data interpolation with excel</title>
@@ -258,27 +284,6 @@ you may want to add -j 4 to those commands to run run in 4 or whatever parallel 
         <pubDate>Sat, 25 Jun 2016 08:05:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>nginx upgrade issues</title>
-        <description>&lt;p&gt;if you upgrading to ubuntu 16&lt;/p&gt;
-
-&lt;p&gt;dpkg: error processing archive /var/cache/apt/archives/nginx-extras_1%3a1.10.1-8.5.0.29~trusty1_amd64.deb (–unpack):
- trying to overwrite ‘/usr/sbin/nginx’, which is also in package nginx 1.11.2-1~trusty
- dpkg-deb: subprocess paste killed by signal (Broken pipe)&lt;/p&gt;
-
-&lt;p&gt;sudo apt-get install -f&lt;/p&gt;
-
-&lt;p&gt;sudo dpkg -i –force overwrite /var/cache/apt/archives/nginx-common_1%3a1.10.1-8.5.0.29~trusty1_all.deb&lt;/p&gt;
-</description>
-        <pubDate>Mon, 20 Jun 2016 09:23:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/20/nginx-upgrade-issues.html</guid>
         
         
         <category>development</category>
