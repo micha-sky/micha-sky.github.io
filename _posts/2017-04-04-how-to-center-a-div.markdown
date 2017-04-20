@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "how to center a div"
-date:   2016-11-24 11:24:58 +0200
+date:   2017-04-04 11:24:58 +0200
 categories: development
 ---
 
