@@ -6,39 +6,9 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 20 Apr 2017 13:39:14 +0300</pubDate>
-    <lastBuildDate>Thu, 20 Apr 2017 13:39:14 +0300</lastBuildDate>
+    <pubDate>Thu, 20 Apr 2017 13:52:33 +0300</pubDate>
+    <lastBuildDate>Thu, 20 Apr 2017 13:52:33 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
-    
-      <item>
-        <title>how to make spark work with mongodb in jupyter notebook</title>
-        <description>&lt;p&gt;how to make spark work with mongodb&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;git clone https://github.com/mongodb/mongo-spark.git&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;./sbt check&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;./sbt +publish-signed&lt;/span&gt;
-
-
-&lt;span class=&quot;go&quot;&gt;pyspark --conf &amp;quot;spark.mongodb.input.uri=mongodb://127.0.0.1/switch.KN?readPreference=primaryPreferred&amp;quot;               --conf &amp;quot;spark.mongodb.output.uri=mongodb://127.0.0.1/switch.KN&amp;quot;               --packages org.mongodb.spark:mongo-spark-connector_2.11:2.0.0&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;df = spark.read.format(“com.mongodb.spark.sql.DefaultSource”).load()
-df.show()&lt;/p&gt;
-
-&lt;p&gt;database = ‘switch’
-collection = ‘KN’
-df2 = spark.read.format(“com.mongodb.spark.sql.DefaultSource”).option(“uri”, “mongodb://127.0.0.1/{database}.{collection}”).load()&lt;/p&gt;
-
-&lt;p&gt;export PACKAGES=”org.mongodb.spark:mongo-spark-connector_2.11:2.0.0”
-export PYSPARK_SUBMIT_ARGS=”–packages ${PACKAGES} pyspark-shell”&lt;/p&gt;
-</description>
-        <pubDate>Tue, 18 Apr 2017 18:24:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2017/04/18/how-to-make-spark-work-in-jupyter-notebook-with-mongo.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2017/04/18/how-to-make-spark-work-in-jupyter-notebook-with-mongo.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
     
       <item>
         <title>how to make spark work in jupyter notebook</title>
@@ -46,6 +16,18 @@ export PYSPARK_SUBMIT_ARGS=”–packages ${PACKAGES} pyspark-shell”&lt;/p&gt;
 
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH&lt;/span&gt;
 &lt;span class=&quot;go&quot;&gt;export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.3-src.zip:$PYTHONPATH&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;to connect spark to mongo db setup mongo connector:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;git clone https://github.com/mongodb/mongo-spark.git&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;./sbt check&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;./sbt +publish-signed&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;add this variables before running it in notebook&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;export PACKAGES=&amp;quot;org.mongodb.spark:mongo-spark-connector_2.11:2.0.0&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;export PYSPARK_SUBMIT_ARGS=&amp;quot;--packages ${PACKAGES} pyspark-shell&amp;quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
 </description>
         <pubDate>Fri, 14 Apr 2017 12:24:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2017/04/14/how-to-make-spark-work-in-jupyter-notebook.html</link>
@@ -298,6 +280,36 @@ $&amp;amp;   event flags (numerically)&lt;/p&gt;
         <pubDate>Fri, 01 Jul 2016 11:58:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2016/07/01/event-triggers-in-ubuntu.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/07/01/event-triggers-in-ubuntu.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>installing caffe neural net on ubuntu</title>
+        <description>if you want to use google&#39;s deep dream you surely need to install caffe deep learning framework
+
+i won&#39;t describe cloning caffe from github (duh) so let&#39;s get going
+
+
+i assume we won&#39;t use CUDA (it&#39;s a whole new story) so you need to make following changes in Makefile.config.example before renaming in to Makefile.config
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;CPU_ONLY := 1&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+then 
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;make all&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;make test&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;make runtest&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
+
+</description>
+        <pubDate>Sat, 25 Jun 2016 08:05:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</guid>
         
         
         <category>development</category>
