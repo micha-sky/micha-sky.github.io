@@ -76,6 +76,38 @@
 
 <p>For the header, it can also contain for example the name, e.g. To: First Last <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#101;&#109;&#097;&#105;&#108;&#064;&#097;&#100;&#100;&#114;&#046;&#116;&#108;&#100;">&#101;&#109;&#097;&#105;&#108;&#064;&#097;&#100;&#100;&#114;&#046;&#116;&#108;&#100;</a>, Other User <a href="&#109;&#097;&#105;&#108;&#116;&#111;:&#111;&#116;&#104;&#101;&#114;&#064;&#109;&#097;&#105;&#108;&#046;&#116;&#108;&#100;">&#111;&#116;&#104;&#101;&#114;&#064;&#109;&#097;&#105;&#108;&#046;&#116;&#108;&#100;</a>. Your code example therefore is not recommended, as it will fail delivering this mail, since just by splitting it on , you still not not have the valid adresses!</p>
 
+<p>following piece of code will allow you to send email with attachments to multiple recepients:</p>
+
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">send_gmail</span><span class="p">(</span><span class="n">recipients_list</span><span class="p">,</span> <span class="n">msg_text</span><span class="p">,</span> <span class="n">fromaddr</span><span class="o">=</span><span class="s">&#39;from_email@gmail.com&#39;</span><span class="p">,</span> <span class="n">subject</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">attachment_path_list</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP</span><span class="p">(</span><span class="s">&#39;smtp.gmail.com:587&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">starttls</span><span class="p">()</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="s">&#39;gmail_login&#39;</span><span class="p">,</span> <span class="s">&#39;gmail_password&#39;</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">set_debuglevel</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">MIMEMultipart</span><span class="p">()</span>
+    <span class="n">sender</span> <span class="o">=</span> <span class="n">fromaddr</span>
+
+    <span class="n">msg</span><span class="p">[</span><span class="s">&#39;Subject&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">subject</span>
+    <span class="k">if</span> <span class="n">fromaddr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="n">msg</span><span class="p">[</span><span class="s">&#39;From&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">sender</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">&#39;To&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;recepient@mail.com&quot;</span>
+    <span class="n">msg</span><span class="p">[</span><span class="s">&#39;Cc&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;,&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">recipients_list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">attachment_path_list</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">each_file_path</span> <span class="ow">in</span> <span class="n">attachment_path_list</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">file_name</span> <span class="o">=</span> <span class="n">each_file_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;/&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">part</span> <span class="o">=</span> <span class="n">MIMEBase</span><span class="p">(</span><span class="s">&#39;application&#39;</span><span class="p">,</span> <span class="s">&quot;octet-stream&quot;</span><span class="p">)</span>
+                <span class="n">part</span><span class="o">.</span><span class="n">set_payload</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">each_file_path</span><span class="p">,</span> <span class="s">&quot;rb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+                <span class="n">Encoders</span><span class="o">.</span><span class="n">encode_base64</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+                <span class="n">part</span><span class="o">.</span><span class="n">add_header</span><span class="p">(</span><span class="s">&#39;Content-Disposition&#39;</span><span class="p">,</span> <span class="s">&#39;attachment&#39;</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">file_name</span><span class="p">)</span>
+                <span class="n">msg</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">part</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">print</span> <span class="s">&quot;could not attach file&quot;</span>
+    <span class="n">msg</span><span class="o">.</span><span class="n">attach</span><span class="p">(</span><span class="n">MIMEText</span><span class="p">(</span><span class="n">msg_text</span><span class="p">,</span> <span class="s">&#39;html&#39;</span><span class="p">))</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">sendmail</span><span class="p">(</span><span class="n">sender</span><span class="p">,</span> <span class="n">recipients_list</span><span class="p">,</span> <span class="n">msg</span><span class="o">.</span><span class="n">as_string</span><span class="p">())</span></code></pre></div>
+
+
   </div>
 
 </article>
