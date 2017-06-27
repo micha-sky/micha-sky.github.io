@@ -6,9 +6,143 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 20 Apr 2017 13:52:33 +0300</pubDate>
-    <lastBuildDate>Thu, 20 Apr 2017 13:52:33 +0300</lastBuildDate>
+    <pubDate>Tue, 27 Jun 2017 14:50:41 +0300</pubDate>
+    <lastBuildDate>Tue, 27 Jun 2017 14:50:41 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>setup logging in python</title>
+        <description>&lt;p&gt;setting up logging in python projects could be pain in the ass sometimes.
+you should remember logging format and configuration in every module even though
+you want it consistent everywhere.&lt;/p&gt;
+
+&lt;p&gt;i found the most convenient way (for me) to have logging configuration in one
+file (it could be JSON and YML but yaml is more readable to me)&lt;/p&gt;
+
+&lt;p&gt;you define one format and a couple of handlers and you are
+good to go:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-yaml&quot; data-lang=&quot;yaml&quot;&gt;&lt;span class=&quot;nn&quot;&gt;---&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;1&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;disable_existing_loggers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;False&lt;/span&gt;
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;formatters&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;simple&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;quot;%(asctime)s&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;%(name)s&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;%(levelname)s&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s&quot;&gt;%(message)s&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;handlers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;logging.StreamHandler&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;DEBUG&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;formatter&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;simple&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;stream&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;ext://sys.stdout&lt;/span&gt;
+
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;info_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;logging.handlers.RotatingFileHandler&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;INFO&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;formatter&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;simple&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;logs/info.log&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;maxBytes&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;10485760&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 10MB&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;backupCount&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;5&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;utf8&lt;/span&gt;
+
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;error_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;logging.handlers.RotatingFileHandler&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;ERROR&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;formatter&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;simple&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;logs/errors.log&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;maxBytes&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;10485760&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 10MB&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;backupCount&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;10&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;utf8&lt;/span&gt;
+
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;debug_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;class&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;logging.handlers.RotatingFileHandler&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;DEBUG&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;formatter&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;simple&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;filename&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;logs/debug.log&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;maxBytes&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;10485760&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 10MB&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;backupCount&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;2&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;encoding&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;utf8&lt;/span&gt;
+
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;loggers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;your.module.one&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;INFO&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;handlers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;info_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;propagate&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;no&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;you].other.module&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;INFO&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;handlers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;info_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;]&lt;/span&gt;
+        &lt;span class=&quot;l-Scalar-Plain&quot;&gt;propagate&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;no&lt;/span&gt;
+
+&lt;span class=&quot;l-Scalar-Plain&quot;&gt;root&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;INFO&lt;/span&gt;
+    &lt;span class=&quot;l-Scalar-Plain&quot;&gt;handlers&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;info_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;error_file_handler&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;in your python code you initialize it like this:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;setup_logging&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;default_path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LOG_CONFIG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default_level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DEBUG&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;join&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;getcwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default_path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;os&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;with&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;open&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;rt&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;yaml&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;safe_load&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;dictConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;logging&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;basicConfig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;level&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;default_level&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Tue, 27 Jun 2017 15:46:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2017/06/27/logging-python.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2017/06/27/logging-python.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>debugging trick in rails</title>
+        <description>&lt;p&gt;when running your application in staging environment you can face some errors that you haven’t experienced in dev environment.&lt;/p&gt;
+
+&lt;p&gt;for instance i was getting internal server error often.&lt;/p&gt;
+
+&lt;p&gt;go to your &lt;code&gt;staging.rb&lt;/code&gt; file and make sure this value is set to true.
+this will give you better rails-like error output instead of just internal server error.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;consider_all_requests_local&lt;/span&gt;       &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Mon, 26 Jun 2017 20:15:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2017/06/26/debugging-trick-in-rails.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2017/06/26/debugging-trick-in-rails.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
+    
+      <item>
+        <title>restoring from postgresql backup in heroku</title>
+        <description>&lt;p&gt;heroku is a very convenient service (no doubt).&lt;/p&gt;
+
+&lt;p&gt;i will tell you a little one liner trick that helps you restore from your pg backup.&lt;/p&gt;
+
+&lt;p&gt;i assume that you know heroku basics and already have heroku cli installed.&lt;/p&gt;
+
+&lt;p&gt;you can use heroku tutorial on restoring but it didn’t work for me&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;heroku pg:psql --app YOU_APP_NAME &amp;lt; backup.sql&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;this will run restore command.&lt;/p&gt;
+</description>
+        <pubDate>Mon, 26 Jun 2017 19:47:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2017/06/26/restoring-from-postgresql-backup-in-heroku.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2017/06/26/restoring-from-postgresql-backup-in-heroku.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>how to make spark work in jupyter notebook</title>
@@ -183,133 +317,6 @@ with gaps that needs to be interpolated&lt;/p&gt;
         <pubDate>Sat, 09 Jul 2016 11:16:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2016/07/09/deploying-rails-app-to-linux-server.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/07/09/deploying-rails-app-to-linux-server.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>csv manipulation with sed and awk</title>
-        <description>&lt;p&gt;if you have huge file and you need to split it into pieces by 40MB&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;split --bytes 40M --numeric-suffixes --suffix-length=3 file.csv spl&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;split file by 150 lines with -l parameter. spl is prefix for split files&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;split --l 150 --numeric-suffixes --suffix-length=3 file.csv spl&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;count number o lines with wc command. -l indicates lines&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;wc -l file.csv&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;remove whitespace from file with sed &lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sed -i &amp;#39;/^$/d&amp;#39; file.csv&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;select columns 1-3 from file to newfile&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;cut -d, -f1-3 file.csv &amp;gt; newfile.csv&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-</description>
-        <pubDate>Fri, 08 Jul 2016 09:23:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/07/08/csv-manipulation-with-sed-and-awk.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/07/08/csv-manipulation-with-sed-and-awk.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>event triggers in ubuntu</title>
-        <description>&lt;p&gt;if you need to run scripts based on file creation or deletion or whatever you will use inoify interface in linux.&lt;/p&gt;
-
-&lt;p&gt;the tool i use is incron it allows to watch the directory and run scripts based on event&lt;/p&gt;
-
-&lt;p&gt;to install in type&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo apt-get install incron&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;after that you need to create tables for user&lt;/p&gt;
-
-&lt;p&gt;to install in type&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo vi /etc/incron.allow&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;and add user root and save it. this means root user can use crontab.&lt;/p&gt;
-
-&lt;p&gt;to access cronab just type &lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;sudo incrontab -e&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;it is similar to cron, so you can type -r to remove table or -l to list jobs.&lt;/p&gt;
-
-&lt;p&gt;the basic patter is&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;&amp;lt;PATH&amp;gt; &amp;lt;EVENT&amp;gt; ACTION&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;events are:&lt;/p&gt;
-
-&lt;p&gt;IN_ACCESS           File was accessed (read) (*)&lt;/p&gt;
-
-&lt;p&gt;IN_ATTRIB           Metadata changed (permissions, timestamps, extended attributes, etc.) (*)&lt;/p&gt;
-
-&lt;p&gt;IN_CLOSE_WRITE      File opened for writing was closed (*)&lt;/p&gt;
-
-&lt;p&gt;IN_CLOSE_NOWRITE    File not opened for writing was closed (*)&lt;/p&gt;
-
-&lt;p&gt;IN_CREATE           File/directory created in watched directory (&lt;em&gt;)
-IN_DELETE           File/directory deleted from watched directory (&lt;/em&gt;)
-IN_DELETE_SELF           Watched file/directory was itself deleted
-IN_MODIFY           File was modified (&lt;em&gt;)
-IN_MOVE_SELF        Watched file/directory was itself moved
-IN_MOVED_FROM       File moved out of watched directory (&lt;/em&gt;)
-IN_MOVED_TO         File moved into watched directory (&lt;em&gt;)
-IN_OPEN             File was opened (&lt;/em&gt;)&lt;/p&gt;
-
-&lt;p&gt;wildcards are used to pass filename to script:&lt;/p&gt;
-
-&lt;p&gt;$$   dollar sign
-$@   watched filesystem path (see above)
-$#   event-related file name
-$%   event flags (textually)
-$&amp;amp;   event flags (numerically)&lt;/p&gt;
-
-&lt;p&gt;all logs are written lo /var/log/syslog&lt;/p&gt;
-</description>
-        <pubDate>Fri, 01 Jul 2016 11:58:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/07/01/event-triggers-in-ubuntu.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/07/01/event-triggers-in-ubuntu.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>installing caffe neural net on ubuntu</title>
-        <description>if you want to use google&#39;s deep dream you surely need to install caffe deep learning framework
-
-i won&#39;t describe cloning caffe from github (duh) so let&#39;s get going
-
-
-i assume we won&#39;t use CUDA (it&#39;s a whole new story) so you need to make following changes in Makefile.config.example before renaming in to Makefile.config
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;CPU_ONLY := 1&lt;/span&gt;
-
-&lt;span class=&quot;go&quot;&gt;INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-then 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;make all&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;make test&lt;/span&gt;
-&lt;span class=&quot;go&quot;&gt;make runtest&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run
-
-</description>
-        <pubDate>Sat, 25 Jun 2016 08:05:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html</guid>
         
         
         <category>development</category>

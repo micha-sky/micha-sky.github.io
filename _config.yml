@@ -18,3 +18,5 @@ github_username:  micha-sky
 
 # Build settings
 markdown: kramdown
+
+excerpt_separator: "" 

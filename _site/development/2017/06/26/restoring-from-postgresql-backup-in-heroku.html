@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>linux commands execution in java</title>
+  <title>restoring from postgresql backup in heroku</title>
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2015/12/15/linux-commands-in-java.html">
+  <link rel="canonical" href="micha-sky.github.io/development/2017/06/26/restoring-from-postgresql-backup-in-heroku.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
 </head>
 
@@ -57,38 +57,22 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">linux commands execution in java</h1>
-    <p class="post-meta"><time datetime="2015-12-15T12:35:58+02:00" itemprop="datePublished">Dec 15, 2015</time></p>
+    <h1 class="post-title" itemprop="name headline">restoring from postgresql backup in heroku</h1>
+    <p class="post-meta"><time datetime="2017-06-26T19:47:58+03:00" itemprop="datePublished">Jun 26, 2017</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>if you want to execute linux commands in java with multiple parameters and pipes (|)
-you need to:</p>
+    <p>heroku is a very convenient service (no doubt).</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">executeCommand</span><span class="o">(</span><span class="n">String</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">String</span><span class="o">[]</span> <span class="n">cmd</span> <span class="o">=</span> <span class="o">{</span>
-                <span class="s">&quot;/bin/sh&quot;</span><span class="o">,</span>
-                <span class="s">&quot;-c&quot;</span><span class="o">,</span>
-                <span class="n">command</span>
-        <span class="o">};</span>
-        <span class="n">StringBuilder</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">();</span>
-        <span class="n">Process</span> <span class="n">p</span><span class="o">;</span>
-        <span class="k">try</span> <span class="o">{</span>
-            <span class="n">p</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="n">cmd</span><span class="o">);</span>
-            <span class="n">p</span><span class="o">.</span><span class="na">waitFor</span><span class="o">();</span>
-            <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span>
-                    <span class="k">new</span> <span class="nf">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
-            <span class="n">String</span> <span class="n">line</span><span class="o">;</span>
-            <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">())!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">output</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">line</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">);</span>
-            <span class="o">}</span>
-        <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span></code></pre></div>
+<p>i will tell you a little one liner trick that helps you restore from your pg backup.</p>
 
-<p>now you can pass commands wiht pipes as a regular string</p>
+<p>i assume that you know heroku basics and already have heroku cli installed.</p>
+
+<p>you can use heroku tutorial on restoring but it didn’t work for me</p>
+
+<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">heroku pg:psql --app YOU_APP_NAME &lt; backup.sql</span></code></pre></div>
+
+<p>this will run restore command.</p>
 
   </div>
 
