@@ -6,9 +6,52 @@
 </description>
     <link>micha-sky.github.io/</link>
     <atom:link href="micha-sky.github.io/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 27 Jun 2017 14:50:41 +0300</pubDate>
-    <lastBuildDate>Tue, 27 Jun 2017 14:50:41 +0300</lastBuildDate>
+    <pubDate>Thu, 17 Aug 2017 23:27:23 +0300</pubDate>
+    <lastBuildDate>Thu, 17 Aug 2017 23:27:23 +0300</lastBuildDate>
     <generator>Jekyll v2.4.0</generator>
+    
+      <item>
+        <title>setting up nginx with spring boot</title>
+        <description>&lt;p&gt;run you spring boot app as a service packed to jar file.
+it will start tomcat server at port 8080.&lt;/p&gt;
+
+&lt;p&gt;create a config in /etc/nginx/sites-available for your app:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-console&quot; data-lang=&quot;console&quot;&gt;&lt;span class=&quot;go&quot;&gt;server {&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;        listen 80 default_server;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;        listen [::]:80 default_server;&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;        server_name _;&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;        location / {&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;                # First attempt to serve request as file, then&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;                # as directory, then fall back to displaying a 404.&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;                proxy_pass http://domain.com:8080/;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;                proxy_set_header Host $host;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;                proxy_set_header X-Read-IP $remote_addr;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;                try_files $uri $uri/ =404;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;        }&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;        location ~* \.(svg|js|jpg|png|css|html|gif|pdf|woff|ttf)$ {&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;            proxy_pass              $scheme://domain.com:8080/$request_uri;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;            proxy_redirect  off;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;            proxy_set_header        X-Real-IP $remote_addr;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;            proxy_set_header        Host $http_host;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;            expires 30d;&lt;/span&gt;
+&lt;span class=&quot;go&quot;&gt;    }&lt;/span&gt;
+
+&lt;span class=&quot;go&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+</description>
+        <pubDate>Thu, 17 Aug 2017 23:44:58 +0300</pubDate>
+        <link>micha-sky.github.io/development/2017/08/17/setting-up-nginx-with-spring-boot.html</link>
+        <guid isPermaLink="true">micha-sky.github.io/development/2017/08/17/setting-up-nginx-with-spring-boot.html</guid>
+        
+        
+        <category>development</category>
+        
+      </item>
     
       <item>
         <title>setup logging in python</title>
@@ -304,19 +347,6 @@ with gaps that needs to be interpolated&lt;/p&gt;
         <pubDate>Sat, 09 Jul 2016 11:23:58 +0300</pubDate>
         <link>micha-sky.github.io/development/2016/07/09/watershed-delineation-with-arcmap.html</link>
         <guid isPermaLink="true">micha-sky.github.io/development/2016/07/09/watershed-delineation-with-arcmap.html</guid>
-        
-        
-        <category>development</category>
-        
-      </item>
-    
-      <item>
-        <title>deployment of rails application to linux server</title>
-        <description>&lt;p&gt;this artile assumes you have a working rails applicaition running on localhost.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 09 Jul 2016 11:16:58 +0300</pubDate>
-        <link>micha-sky.github.io/development/2016/07/09/deploying-rails-app-to-linux-server.html</link>
-        <guid isPermaLink="true">micha-sky.github.io/development/2016/07/09/deploying-rails-app-to-linux-server.html</guid>
         
         
         <category>development</category>

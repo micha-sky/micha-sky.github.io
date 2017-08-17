@@ -37,5 +37,5 @@ server {
     }
 
 }
-{% endhighlihgt %}
+{% endhighlight %}
 
