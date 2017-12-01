@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/deployment/2015/12/16/sql-joins-expained.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/deployment/2015/12/16/sql-joins-expained.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,26 +58,26 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">sql joins explained</h1>
-    <p class="post-meta"><time datetime="2015-12-16T19:38:58+02:00" itemprop="datePublished">Dec 16, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-12-16T18:38:58+01:00" itemprop="datePublished">Dec 16, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>here i want to explain the difference between inner, left, right joins in sql.
 saying left and right you have to think of tables to the left and right sides of join expression.</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">inner</span> <span class="k">join</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">inner</span> <span class="k">join</span></code></pre></figure>
 
 <p>inner join returns records from left table that are present in right table.</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">left</span> <span class="k">join</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">left</span> <span class="k">join</span></code></pre></figure>
 
 <p>left join is similar to inner, but if there is no related records in right table, it will return nulls.</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">right</span> <span class="k">join</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">right</span> <span class="k">join</span></code></pre></figure>
 
 <p>returns all record from the right table that are present in the left one.</p>
 
-<div class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">full</span> <span class="k">join</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-sql" data-lang="sql"><span class="k">full</span> <span class="k">join</span></code></pre></figure>
 
 <p>there’s also a full join that returns all records from all tables and puts nulls where records does’nt exist.</p>
 

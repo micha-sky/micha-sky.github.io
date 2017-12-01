@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/03/17/ruby-tricky-questions.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2016/03/17/ruby-tricky-questions.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,7 +58,7 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">ruby tricky questions</h1>
-    <p class="post-meta"><time datetime="2016-03-17T15:33:23+02:00" itemprop="datePublished">Mar 17, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-03-17T14:33:23+01:00" itemprop="datePublished">Mar 17, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -66,10 +66,10 @@
 
 <p>difference between Date.today &amp; Date.current</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Returns Time.zone.today when &lt;tt&gt;Time.zone&lt;/tt&gt; or &lt;tt&gt;config.time_zone&lt;/tt&gt; are     set, otherwise just returns Date.today.</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="c1"># Returns Time.zone.today when &lt;tt&gt;Time.zone&lt;/tt&gt; or &lt;tt&gt;config.time_zone&lt;/tt&gt; are     set, otherwise just returns Date.today.</span>
   <span class="k">def</span> <span class="nf">current</span>
-    <span class="o">::</span><span class="no">Time</span><span class="o">.</span><span class="n">zone</span> <span class="p">?</span> <span class="o">::</span><span class="no">Time</span><span class="o">.</span><span class="n">zone</span><span class="o">.</span><span class="n">today</span> <span class="p">:</span> <span class="o">::</span><span class="no">Date</span><span class="o">.</span><span class="n">today</span>
-  <span class="k">end</span></code></pre></div>
+    <span class="o">::</span><span class="no">Time</span><span class="p">.</span><span class="nf">zone</span> <span class="p">?</span> <span class="o">::</span><span class="no">Time</span><span class="p">.</span><span class="nf">zone</span><span class="p">.</span><span class="nf">today</span> <span class="p">:</span> <span class="o">::</span><span class="no">Date</span><span class="p">.</span><span class="nf">today</span>
+  <span class="k">end</span></code></pre></figure>
 
 <p>difference between save &amp; save!
 save! will raise an error if not successful

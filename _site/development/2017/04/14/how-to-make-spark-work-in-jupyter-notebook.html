@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2017/04/14/how-to-make-spark-work-in-jupyter-notebook.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2017/04/14/how-to-make-spark-work-in-jupyter-notebook.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,25 +58,25 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">how to make spark work in jupyter notebook</h1>
-    <p class="post-meta"><time datetime="2017-04-14T12:24:58+03:00" itemprop="datePublished">Apr 14, 2017</time></p>
+    <p class="post-meta"><time datetime="2017-04-14T11:24:58+02:00" itemprop="datePublished">Apr 14, 2017</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>how to make spark work in jupyter notebook</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">export PYTHONPATH=$SPARK_HOME/python/:$PYTHONPATH</span>
-<span class="go">export PYTHONPATH=$SPARK_HOME/python/lib/py4j-0.10.3-src.zip:$PYTHONPATH</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">export PYTHONPATH=$</span>SPARK_HOME/python/:<span class="nv">$PYTHONPATH</span>
+<span class="gp">export PYTHONPATH=$</span>SPARK_HOME/python/lib/py4j-0.10.3-src.zip:<span class="nv">$PYTHONPATH</span></code></pre></figure>
 
 <p>to connect spark to mongo db setup mongo connector:</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">git clone https://github.com/mongodb/mongo-spark.git</span>
-<span class="go">./sbt check</span>
-<span class="go">./sbt +publish-signed</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">git clone https://github.com/mongodb/mongo-spark.git
+./sbt check
+./sbt +publish-signed</span></code></pre></figure>
 
 <p>add this variables before running it in notebook</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">export PACKAGES=&quot;org.mongodb.spark:mongo-spark-connector_2.11:2.0.0&quot;</span>
-<span class="go">export PYSPARK_SUBMIT_ARGS=&quot;--packages ${PACKAGES} pyspark-shell&quot;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">export PACKAGES="org.mongodb.spark:mongo-spark-connector_2.11:2.0.0"
+</span><span class="gp">export PYSPARK_SUBMIT_ARGS="--packages $</span><span class="o">{</span>PACKAGES<span class="o">}</span> pyspark-shell<span class="s2">"</span></code></pre></figure>
 
 
   </div>

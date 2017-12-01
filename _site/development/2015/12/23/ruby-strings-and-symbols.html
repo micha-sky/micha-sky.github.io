@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2015/12/23/ruby-strings-and-symbols.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2015/12/23/ruby-strings-and-symbols.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,25 +58,25 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">ruby strings and symbols</h1>
-    <p class="post-meta"><time datetime="2015-12-23T15:51:23+02:00" itemprop="datePublished">Dec 23, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-12-23T14:51:23+01:00" itemprop="datePublished">Dec 23, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>i want to explain the difference between strings and symbols in ruby.
 strings are surrounded by single or double quotes, symbols starts with colon.</p>
 
-<p>strings are equal </p>
+<p>strings are equal</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">&quot;hello&quot;</span> <span class="o">==</span> <span class="s1">&#39;hello&#39;</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">"hello"</span> <span class="o">==</span> <span class="s1">'hello'</span>
 <span class="o">=&gt;</span> <span class="kp">true</span>
 
 <span class="ss">:hello</span> <span class="o">==</span> <span class="ss">:hello</span>
-<span class="o">=&gt;</span> <span class="kp">true</span></code></pre></div>
+<span class="o">=&gt;</span> <span class="kp">true</span></code></pre></figure>
 
 <p>but string and symbol aren’t</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">&quot;hello&quot;</span> <span class="o">==</span> <span class="ss">:hello</span>
-<span class="o">=&gt;</span> <span class="kp">false</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="s2">"hello"</span> <span class="o">==</span> <span class="ss">:hello</span>
+<span class="o">=&gt;</span> <span class="kp">false</span></code></pre></figure>
 
 <p>the other thing is that strings are mutable objects but symbols aren’t. also each string has its own place in memory allocated. symbols share same space in heap</p>
 

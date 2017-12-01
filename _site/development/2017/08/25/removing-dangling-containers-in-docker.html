@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>watershed delineation with arcmap</title>
+  <title>removing dangling containers in docker</title>
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/development/2016/07/09/watershed-delineation-with-arcmap.html">
+  <link rel="canonical" href="http://localhost:4000/development/2017/08/25/removing-dangling-containers-in-docker.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
@@ -57,22 +57,26 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">watershed delineation with arcmap</h1>
-    <p class="post-meta"><time datetime="2016-07-09T10:23:58+02:00" itemprop="datePublished">Jul 9, 2016</time></p>
+    <h1 class="post-title" itemprop="name headline">removing dangling containers in docker</h1>
+    <p class="post-meta"><time datetime="2017-08-25T17:08:58+02:00" itemprop="datePublished">Aug 25, 2017</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>simple steps for delineation of watershed :</p>
-<ul>
-  <li>get dem (digital elevation model) for needed region 
-(http://srtm.csi.cgiar.org/SELECTION/inputCoord.asp)</li>
-  <li>fill dem (fills sinks in raster data)</li>
-  <li>flow direction</li>
-  <li>flow accumulation</li>
-  <li>point and outlet, snap pour point</li>
-  <li>watershed</li>
-  <li>viola</li>
-</ul>
+    <p>when building a lot of containers docker can use up a lot of memory with
+intermediate and dangling containers</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">docker images -f dangling=true</span></code></pre></figure>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">docker rmi $</span><span class="o">(</span>docker images <span class="nt">-f</span> <span class="nv">dangling</span><span class="o">=</span><span class="nb">true</span> <span class="nt">-q</span><span class="o">)</span></code></pre></figure>
+
+<p>to stop running containers</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">docker stop `docker ps -qa`</span></code></pre></figure>
+
+<p>to remove running containers</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">docker rm `docker ps -qa`</span></code></pre></figure>
+
 
   </div>
 

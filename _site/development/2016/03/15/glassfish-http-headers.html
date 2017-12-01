@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/03/15/glassfish-http-headers.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2016/03/15/glassfish-http-headers.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,36 +58,36 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">glassfish response headers</h1>
-    <p class="post-meta"><time datetime="2016-03-15T07:55:58+02:00" itemprop="datePublished">Mar 15, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-03-15T06:55:58+01:00" itemprop="datePublished">Mar 15, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>i recently noticed that by deafault glassfish returns some interesing headers with every response.
 try this out:</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">curl -I yourdomain.com</span>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">curl -I yourdomain.com
 
-<span class="go">HTTP/1.1 405 Request method &amp;#39;HEAD&amp;#39; not supported</span>
-<span class="go">Server: GlassFish Server Open Source Edition  4.1.1 </span>
-<span class="go">X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1.1  Java/Oracle Corporation/1.8)</span>
-<span class="go">Allow: GET</span>
-<span class="go">Content-Length: 1214</span>
-<span class="go">Content-Language: </span>
-<span class="go">Content-Type: text/html;charset=UTF-8</span>
-<span class="go">Date: Tue, 15 Mar 2016 05:49:05 GMT</span></code></pre></div>
+</span><span class="gp">HTTP/1.1 405 Request method &amp;#</span>39<span class="p">;</span>HEAD&amp;#39<span class="p">;</span> not supported
+<span class="go">Server: GlassFish Server Open Source Edition  4.1.1 
+X-Powered-By: Servlet/3.1 JSP/2.3 (GlassFish Server Open Source Edition  4.1.1  Java/Oracle Corporation/1.8)
+Allow: GET
+Content-Length: 1214
+Content-Language: 
+</span><span class="gp">Content-Type: text/html;</span><span class="nv">charset</span><span class="o">=</span>UTF-8
+<span class="go">Date: Tue, 15 Mar 2016 05:49:05 GMT</span></code></pre></figure>
 
 <p>if you don’t find these headers neccesary (neither do i) you can disable with</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin set server.network-config.protocols.protocol.http-listener-1.http.xpowered-by=false</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin set server.network-config.protocols.protocol.http-listener-1.http.xpowered-by=false </span></code></pre></figure>
 
 <p>or in glassfish web interface.</p>
 
 <p>this leaves out server header. to replace it we need to create jvm option called “product name”</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin create-jvm-options -Dproduct.name=&quot;MyProduct&quot;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin create-jvm-options -Dproduct.name="MyProduct"</span></code></pre></figure>
 
 <p>or in web interface.
-don’t forget to restart your domain. </p>
+don’t forget to restart your domain.</p>
 
   </div>
 

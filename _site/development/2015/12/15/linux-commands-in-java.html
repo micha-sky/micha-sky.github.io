@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2015/12/15/linux-commands-in-java.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2015/12/15/linux-commands-in-java.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,35 +58,36 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">linux commands execution in java</h1>
-    <p class="post-meta"><time datetime="2015-12-15T12:35:58+02:00" itemprop="datePublished">Dec 15, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-12-15T11:35:58+01:00" itemprop="datePublished">Dec 15, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>if you want to execute linux commands in java with multiple parameters and pipes (|)
 you need to:</p>
 
-<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">executeCommand</span><span class="o">(</span><span class="n">String</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
+<figure class="highlight"><pre><code class="language-java" data-lang="java"> <span class="kd">private</span> <span class="kd">static</span> <span class="n">String</span> <span class="nf">executeCommand</span><span class="o">(</span><span class="n">String</span> <span class="n">command</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">String</span><span class="o">[]</span> <span class="n">cmd</span> <span class="o">=</span> <span class="o">{</span>
-                <span class="s">&quot;/bin/sh&quot;</span><span class="o">,</span>
-                <span class="s">&quot;-c&quot;</span><span class="o">,</span>
+                <span class="s">"/bin/sh"</span><span class="o">,</span>
+                <span class="s">"-c"</span><span class="o">,</span>
                 <span class="n">command</span>
         <span class="o">};</span>
-        <span class="n">StringBuilder</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="o">();</span>
+        <span class="n">StringBuilder</span> <span class="n">output</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="o">();</span>
         <span class="n">Process</span> <span class="n">p</span><span class="o">;</span>
         <span class="k">try</span> <span class="o">{</span>
             <span class="n">p</span> <span class="o">=</span> <span class="n">Runtime</span><span class="o">.</span><span class="na">getRuntime</span><span class="o">().</span><span class="na">exec</span><span class="o">(</span><span class="n">cmd</span><span class="o">);</span>
             <span class="n">p</span><span class="o">.</span><span class="na">waitFor</span><span class="o">();</span>
             <span class="n">BufferedReader</span> <span class="n">reader</span> <span class="o">=</span>
-                    <span class="k">new</span> <span class="nf">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="nf">InputStreamReader</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
+                    <span class="k">new</span> <span class="nf">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">getInputStream</span><span class="o">()));</span>
             <span class="n">String</span> <span class="n">line</span><span class="o">;</span>
             <span class="k">while</span> <span class="o">((</span><span class="n">line</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="na">readLine</span><span class="o">())!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-                <span class="n">output</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">line</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">&quot;\n&quot;</span><span class="o">);</span>
+                <span class="n">output</span><span class="o">.</span><span class="na">append</span><span class="o">(</span><span class="n">line</span><span class="o">).</span><span class="na">append</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
             <span class="o">}</span>
         <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
         <span class="o">}</span>
         <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="na">toString</span><span class="o">();</span>
-    <span class="o">}</span></code></pre></div>
+    <span class="o">}</span>
+   </code></pre></figure>
 
 <p>now you can pass commands wiht pipes as a regular string</p>
 

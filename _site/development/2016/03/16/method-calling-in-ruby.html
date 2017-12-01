@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/03/16/method-calling-in-ruby.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2016/03/16/method-calling-in-ruby.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,19 +58,19 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">method calling in ruby</h1>
-    <p class="post-meta"><time datetime="2016-03-16T08:23:58+02:00" itemprop="datePublished">Mar 16, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-03-16T07:23:58+01:00" itemprop="datePublished">Mar 16, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>there are three ways of calling method in ruby: dot operator, Object#send and method(:foo).call</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">object</span> <span class="o">=</span> <span class="no">Object</span><span class="o">.</span><span class="n">new</span>
-<span class="n">object</span><span class="o">.</span><span class="n">object_id</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">object</span> <span class="o">=</span> <span class="no">Object</span><span class="p">.</span><span class="nf">new</span>
+<span class="n">object</span><span class="p">.</span><span class="nf">object_id</span>
 <span class="o">=&gt;</span> <span class="mi">20826000</span>
-<span class="n">object</span><span class="o">.</span><span class="n">send</span><span class="p">(</span><span class="ss">:object_id</span><span class="p">)</span>
+<span class="n">object</span><span class="p">.</span><span class="nf">send</span><span class="p">(</span><span class="ss">:object_id</span><span class="p">)</span>
 <span class="o">=&gt;</span> <span class="mi">20826000</span>
-<span class="n">object</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="ss">:object_id</span><span class="p">)</span><span class="o">.</span><span class="n">call</span>
-<span class="o">=&gt;</span> <span class="mi">20826000</span></code></pre></div>
+<span class="n">object</span><span class="p">.</span><span class="nf">method</span><span class="p">(</span><span class="ss">:object_id</span><span class="p">).</span><span class="nf">call</span>
+<span class="o">=&gt;</span> <span class="mi">20826000</span></code></pre></figure>
 
   </div>
 

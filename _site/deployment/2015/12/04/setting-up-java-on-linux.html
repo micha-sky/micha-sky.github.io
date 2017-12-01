@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/deployment/2015/12/04/setting-up-java-on-linux.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/deployment/2015/12/04/setting-up-java-on-linux.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,7 +58,7 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">set up java environment on ubuntu</h1>
-    <p class="post-meta"><time datetime="2015-12-04T00:39:58+02:00" itemprop="datePublished">Dec 4, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-12-03T23:39:58+01:00" itemprop="datePublished">Dec 4, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -66,26 +66,26 @@
 
 <p>first, let’s install default jre &amp; jdk</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install default-jre</span>
-<span class="go">sudo apt-get install default-jdk</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install default-jre
+sudo apt-get install default-jdk</span></code></pre></figure>
 
 <p>then we add webupd8team repository</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install python-software-properties</span>
-<span class="go">sudo add-apt-repository ppa:webupd8team/java</span>
-<span class="go">sudo apt-get update</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install python-software-properties
+sudo add-apt-repository ppa:webupd8team/java
+sudo apt-get update</span></code></pre></figure>
 
 <p>let’s install oracle’s java 6,7,8</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install oracle-java6-installer</span>
-<span class="go">sudo apt-get install oracle-java7-installer</span>
-<span class="go">sudo apt-get install oracle-java8-installer</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install oracle-java6-installer
+sudo apt-get install oracle-java7-installer
+sudo apt-get install oracle-java8-installer</span></code></pre></figure>
 
 <p>setting up JAVA_HOME variable to java-8-oracle</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo update-alternatives --config java</span>
-<span class="go">export JAVA_HOME=/usr/lib/jvm/java-8-oracle</span>
-<span class="go">echo $JAVA_HOME</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo update-alternatives --config java
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle
+</span><span class="gp">echo $</span>JAVA_HOME</code></pre></figure>
 
   </div>
 

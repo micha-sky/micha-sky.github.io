@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/deployment/2016/02/21/setting-up-mail-server.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/deployment/2016/02/21/setting-up-mail-server.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,16 +58,16 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">setting up mail server on ubuntu using postfix</h1>
-    <p class="post-meta"><time datetime="2016-02-21T15:13:23+02:00" itemprop="datePublished">Feb 21, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-02-21T14:13:23+01:00" itemprop="datePublished">Feb 21, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>lets install the things we need for mailing</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install postfix mailutils courier-pop courier-imap</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install postfix mailutils courier-pop courier-imap</span></code></pre></figure>
 
 <p>don’t forget to open necessary ports if you running on amazon (25, 143, POP, IMAP)
-also you need to make sure that you created MX-record </p>
+also you need to make sure that you created MX-record</p>
 
   </div>
 

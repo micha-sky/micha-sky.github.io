@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2016/06/25/installing-cafe-neural-net-on-ubuntu.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,7 +58,7 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">installing caffe neural net on ubuntu</h1>
-    <p class="post-meta"><time datetime="2016-06-25T08:05:58+03:00" itemprop="datePublished">Jun 25, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-06-25T07:05:58+02:00" itemprop="datePublished">Jun 25, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -66,23 +66,23 @@
 
 <p>i won’t describe cloning caffe from github (duh) so let’s get going</p>
 
-<p>i assume we won’t use CUDA (it’s a whole new story) so you need to make following changes in Makefile.config.example </p>
+<p>i assume we won’t use CUDA (it’s a whole new story) so you need to make following changes in Makefile.config.example</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">CPU_ONLY := 1</span>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">CPU_ONLY := 1
 
-<span class="go">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial/</span></code></pre></div>
+</span><span class="gp">INCLUDE_DIRS := $</span><span class="o">(</span>PYTHON_INCLUDE<span class="o">)</span> /usr/local/include /usr/include/hdf5/serial/</code></pre></figure>
 
-<p>then </p>
+<p>then</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">make all</span>
-<span class="go">make test</span>
-<span class="go">make runtest</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">make all
+make test
+make runtest</span></code></pre></figure>
 
 <p>you may want to add -j 4 to those commands to run run in 4 or whatever parallel threads you want to run</p>
 
 <p>also important</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">export PYTHONPATH=/home/username/caffe/python</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">export PYTHONPATH=/home/username/caffe/python</span></code></pre></figure>
 
 
   </div>

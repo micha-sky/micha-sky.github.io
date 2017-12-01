@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/deployment/2015/12/04/jenkins-and-glassfish-together.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/deployment/2015/12/04/jenkins-and-glassfish-together.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,39 +58,39 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">running jenkins and glassfish on one instance</h1>
-    <p class="post-meta"><time datetime="2015-12-04T01:39:58+02:00" itemprop="datePublished">Dec 4, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-12-04T00:39:58+01:00" itemprop="datePublished">Dec 4, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>installing jenkins. sudo su before this</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -</span>
-<span class="go">echo deb http://pkg.jenkins-ci.org/debian binary/ &gt; /etc/apt/sources.list.d/jenkins.list</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">wget -q -O - http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key | apt-key add -
+</span><span class="gp">echo deb http://pkg.jenkins-ci.org/debian binary/ &gt;</span> /etc/apt/sources.list.d/jenkins.list</code></pre></figure>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">apt-get update</span>
-<span class="go">apt-get install jenkins</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">apt-get update
+apt-get install jenkins</span></code></pre></figure>
 
 <p>check your jenkins dashboard: yourserver.com:8080
 Add admin user, uncheck “allow users to sign up”, configure matrix-based security, install git and bitbucket plugin.</p>
 
 <p>now, let’s download and install glassfish 4.1</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">wget http://download.java.net/glassfish/4.1.1/release/glassfish-4.1.1.zip</span>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">wget http://download.java.net/glassfish/4.1.1/release/glassfish-4.1.1.zip
 
-<span class="go">sudo unzip glassfish-4.1.1.zip -d /opt</span></code></pre></div>
+sudo unzip glassfish-4.1.1.zip -d /opt</span></code></pre></figure>
 
 <p>add glassfish to PATH variable</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">export PATH=/opt/glassfish4/bin:$PATH</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">export PATH=/opt/glassfish4/bin:$</span>PATH</code></pre></figure>
 
 <p>run test domain, and wait for it to start, and then stop it</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin start-domain</span>
-<span class="go">asadmin stop-domain</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin start-domain
+asadmin stop-domain</span></code></pre></figure>
 
 <p>now let’s create our domain, and set admin user/password for it</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin create-domain yourdomain</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">asadmin create-domain yourdomain</span></code></pre></figure>
 
 <p>glassfish will choose random port, because jenkins already took 8080, so now we can run them together on one instance.</p>
 

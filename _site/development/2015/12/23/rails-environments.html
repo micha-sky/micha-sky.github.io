@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2015/12/23/rails-environments.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2015/12/23/rails-environments.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,12 +58,12 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">rails environments</h1>
-    <p class="post-meta"><time datetime="2015-12-23T18:40:23+02:00" itemprop="datePublished">Dec 23, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-12-23T17:40:23+01:00" itemprop="datePublished">Dec 23, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>rails has 3 environments by default: test, development and production. they have
-corresponding configuration file in config/environments/ folder.   </p>
+corresponding configuration file in config/environments/ folder.</p>
 
 <p>test environment is used for testing application and has special database that is being wiped out between tests.</p>
 
@@ -73,11 +73,11 @@ corresponding configuration file in config/environments/ folder.   </p>
 
 <p>the major convenience is that you can choose to run your code differently in different environments like this:</p>
 
-<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">if</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">production?</span>
+<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">if</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">production?</span>
 <span class="c1"># do stuff</span>
-<span class="k">elsif</span> <span class="no">Rails</span><span class="o">.</span><span class="n">env</span><span class="o">.</span><span class="n">development</span>
+<span class="k">elsif</span> <span class="no">Rails</span><span class="p">.</span><span class="nf">env</span><span class="p">.</span><span class="nf">development</span>
 <span class="c1"># do something else</span>
-<span class="k">end</span></code></pre></div>
+<span class="k">end</span></code></pre></figure>
 
   </div>
 

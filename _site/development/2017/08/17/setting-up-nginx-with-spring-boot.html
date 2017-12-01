@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2017/08/17/setting-up-nginx-with-spring-boot.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2017/08/17/setting-up-nginx-with-spring-boot.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,7 +58,7 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">setting up nginx with spring boot</h1>
-    <p class="post-meta"><time datetime="2017-08-17T23:44:58+03:00" itemprop="datePublished">Aug 17, 2017</time></p>
+    <p class="post-meta"><time datetime="2017-08-17T22:44:58+02:00" itemprop="datePublished">Aug 17, 2017</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -67,31 +67,31 @@ it will start tomcat server at port 8080.</p>
 
 <p>create a config in /etc/nginx/sites-available for your app:</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">server {</span>
-<span class="go">        listen 80 default_server;</span>
-<span class="go">        listen [::]:80 default_server;</span>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">server {
+</span><span class="gp">        listen 80 default_server;</span>
+<span class="gp">        listen [::]:80 default_server;</span>
+<span class="go">
+</span><span class="gp">        server_name _;</span>
+<span class="go">
+        location / {
+</span><span class="gp">                #</span> First attempt to serve request as file, <span class="k">then</span>
+<span class="gp">                #</span> as directory, <span class="k">then </span>fall back to displaying a 404.
+<span class="gp">                proxy_pass http://domain.com:8080/;</span>
+<span class="gp">                proxy_set_header Host $</span>host<span class="p">;</span>
+<span class="gp">                proxy_set_header X-Read-IP $</span>remote_addr<span class="p">;</span>
+<span class="gp">                try_files $</span>uri <span class="nv">$uri</span>/ <span class="o">=</span>404<span class="p">;</span>
+<span class="go">        }
 
-<span class="go">        server_name _;</span>
+</span><span class="gp">        location ~* \.(svg|js|jpg|png|css|html|gif|pdf|woff|ttf)$</span> <span class="o">{</span>
+<span class="gp">            proxy_pass              $</span>scheme://domain.com:8080/<span class="nv">$request_uri</span><span class="p">;</span>
+<span class="gp">            proxy_redirect  off;</span>
+<span class="gp">            proxy_set_header        X-Real-IP $</span>remote_addr<span class="p">;</span>
+<span class="gp">            proxy_set_header        X-Forwarded-For $</span>proxy_add_x_forwarded_for<span class="p">;</span>
+<span class="gp">            proxy_set_header        Host $</span>http_host<span class="p">;</span>
+<span class="gp">            expires 30d;</span>
+<span class="go">    }
 
-<span class="go">        location / {</span>
-<span class="go">                # First attempt to serve request as file, then</span>
-<span class="go">                # as directory, then fall back to displaying a 404.</span>
-<span class="go">                proxy_pass http://domain.com:8080/;</span>
-<span class="go">                proxy_set_header Host $host;</span>
-<span class="go">                proxy_set_header X-Read-IP $remote_addr;</span>
-<span class="go">                try_files $uri $uri/ =404;</span>
-<span class="go">        }</span>
-
-<span class="go">        location ~* \.(svg|js|jpg|png|css|html|gif|pdf|woff|ttf)$ {</span>
-<span class="go">            proxy_pass              $scheme://domain.com:8080/$request_uri;</span>
-<span class="go">            proxy_redirect  off;</span>
-<span class="go">            proxy_set_header        X-Real-IP $remote_addr;</span>
-<span class="go">            proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;</span>
-<span class="go">            proxy_set_header        Host $http_host;</span>
-<span class="go">            expires 30d;</span>
-<span class="go">    }</span>
-
-<span class="go">}</span></code></pre></div>
+}</span></code></pre></figure>
 
 
   </div>

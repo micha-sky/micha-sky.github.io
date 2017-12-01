@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/03/30/handy-linux-commands.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2016/03/30/handy-linux-commands.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,45 +58,45 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">handy linux commands</h1>
-    <p class="post-meta"><time datetime="2016-03-30T14:33:58+03:00" itemprop="datePublished">Mar 30, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-03-30T13:33:58+02:00" itemprop="datePublished">Mar 30, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>prints file sizes in megabytes</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -l --block-size=M</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -l --block-size=M</span></code></pre></figure>
 
 <p>counts files in directory</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -1 | wc -l</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -1 | wc -l</span></code></pre></figure>
 
 <p>sorts files by time (-tr to reverse order)</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -t -l</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -t -l</span></code></pre></figure>
 
 <p>sorts files by size (-Sr to reverse)</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -S -l</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">ls -S -l</span></code></pre></figure>
 
 <p>find files containig text</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">grep -r TEXT *</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">grep -r TEXT *</span></code></pre></figure>
 
 <p>if you want to download a list of files</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">wget -i &lt;urls class=&quot;txt&quot;&gt;&lt;/urls&gt;</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">wget -i &lt;urls class="txt"&gt;</span>&lt;/urls&gt;</code></pre></figure>
 
 <p>add prefix to all .csv files in directory</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">for file in *.csv; do   mv &quot;$file&quot; &quot;preix_${file}&quot;; done</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">for file in *.csv;</span> <span class="k">do   </span>mv <span class="s2">"</span><span class="nv">$file</span><span class="s2">"</span> <span class="s2">"preix_</span><span class="k">${</span><span class="nv">file</span><span class="k">}</span><span class="s2">"</span><span class="p">;</span> <span class="k">done</span></code></pre></figure>
 
 <p>upgrade all pip packages (caraful may beak some versions dependencies)</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">pip freeze --local | grep -v &#39;^\-e&#39; | cut -d = -f 1  | xargs -n1 sudo pip install -U</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U</span></code></pre></figure>
 
 <p>copy file contents to clipboard</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">cat ~/.ssh/id_rsa | xclip -sel clip</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">cat ~/.ssh/id_rsa | xclip -sel clip</span></code></pre></figure>
 
 
   </div>

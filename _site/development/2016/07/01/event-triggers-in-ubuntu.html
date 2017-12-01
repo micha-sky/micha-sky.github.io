@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/development/2016/07/01/event-triggers-in-ubuntu.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/development/2016/07/01/event-triggers-in-ubuntu.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,7 +58,7 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">event triggers in ubuntu</h1>
-    <p class="post-meta"><time datetime="2016-07-01T11:58:58+03:00" itemprop="datePublished">Jul 1, 2016</time></p>
+    <p class="post-meta"><time datetime="2016-07-01T10:58:58+02:00" itemprop="datePublished">Jul 1, 2016</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
@@ -68,25 +68,25 @@
 
 <p>to install in type</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install incron</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get install incron</span></code></pre></figure>
 
 <p>after that you need to create tables for user</p>
 
 <p>to install in type</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo vi /etc/incron.allow</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo vi /etc/incron.allow</span></code></pre></figure>
 
 <p>and add user root and save it. this means root user can use crontab.</p>
 
-<p>to access cronab just type </p>
+<p>to access cronab just type</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo incrontab -e</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo incrontab -e</span></code></pre></figure>
 
 <p>it is similar to cron, so you can type -r to remove table or -l to list jobs.</p>
 
 <p>the basic patter is</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">&lt;PATH&gt; &lt;EVENT&gt; ACTION</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">&lt;PATH&gt;</span> &lt;EVENT&gt; ACTION </code></pre></figure>
 
 <p>events are:</p>
 

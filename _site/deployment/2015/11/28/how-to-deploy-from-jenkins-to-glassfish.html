@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,45 +58,45 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">how to set up jenkins project with glassfish</h1>
-    <p class="post-meta"><time datetime="2015-11-28T00:39:58+02:00" itemprop="datePublished">Nov 28, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-11-27T23:39:58+01:00" itemprop="datePublished">Nov 28, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
     <p>if you want to use jenkins and glassfish on one instance, it’s very easy to for continious integration.</p>
 
-<p>first you want to add new maven project and configure git repository. </p>
+<p>first you want to add new maven project and configure git repository.</p>
 
 <p>then you need to add pre-build script that pulls changes from repository:</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span>!/bin/bash
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span><span class="o">!</span>/bin/bash
+<span class="go">
+cd /path/to/repository
 
-<span class="go">cd /path/to/repository</span>
+git pull origin master</span></code></pre></figure>
 
-<span class="go">git pull origin master</span></code></pre></div>
+<p>then you specify maven goal, e.g.</p>
 
-<p>then you specify maven goal, e.g. </p>
-
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">mvn clean package -DskipTests=true</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">mvn clean package -DskipTests=true</span></code></pre></figure>
 
 <p>after that you add post-build script, which deploys build to :</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span>!/bin/bash
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span><span class="o">!</span>/bin/bash
+<span class="go">
+echo -n "Undeploying current version..."
+/opt/glassfish4/bin/asadmin undeploy ROOT
+echo "done"
 
-<span class="go">echo -n &quot;Undeploying current version...&quot;</span>
-<span class="go">/opt/glassfish4/bin/asadmin undeploy ROOT</span>
-<span class="go">echo &quot;done&quot;</span>
+echo -n "Stopping glassfish..."
+/opt/glassfish4/bin/asadmin stop-domain yourdomain
+echo "done"
 
-<span class="go">echo -n &quot;Stopping glassfish...&quot;</span>
-<span class="go">/opt/glassfish4/bin/asadmin stop-domain yourdomain</span>
-<span class="go">echo &quot;done&quot;</span>
+echo -n "Starting glassfish..."
+/opt/glassfish4/bin/asadmin start-domain yourdomain
+echo "done"
 
-<span class="go">echo -n &quot;Starting glassfish...&quot;</span>
-<span class="go">/opt/glassfish4/bin/asadmin start-domain yourdomain</span>
-<span class="go">echo &quot;done&quot;</span>
-
-<span class="go">echo -n &quot;Deploying ROOT.WAR...&quot;</span>
-<span class="go">/opt/glassfish4/bin/asadmin --user admin deploy --contextroot / --name ROOT /var/lib/jenkins/workspace/projectname/target/ROOT.war</span>
-<span class="go">echo &quot;done&quot;</span></code></pre></div>
+echo -n "Deploying ROOT.WAR..."
+/opt/glassfish4/bin/asadmin --user admin deploy --contextroot / --name ROOT /var/lib/jenkins/workspace/projectname/target/ROOT.war
+echo "done"</span></code></pre></figure>
 
 <p>aslo you want to use –passwordfile option, that allows you not to type password every time you run this script.
 passwordfile contains AS_ADMIN_PASSWORD=yourpassword</p>

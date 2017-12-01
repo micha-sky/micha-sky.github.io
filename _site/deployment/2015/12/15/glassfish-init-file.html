@@ -10,8 +10,8 @@
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="micha-sky.github.io/deployment/2015/12/15/glassfish-init-file.html">
-  <link rel="alternate" type="application/rss+xml" title="development blog" href="micha-sky.github.io/feed.xml">
+  <link rel="canonical" href="http://localhost:4000/deployment/2015/12/15/glassfish-init-file.html">
+  <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
 
@@ -58,34 +58,34 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">glassfish init script for linux</h1>
-    <p class="post-meta"><time datetime="2015-12-15T19:39:58+02:00" itemprop="datePublished">Dec 15, 2015</time></p>
+    <p class="post-meta"><time datetime="2015-12-15T18:39:58+01:00" itemprop="datePublished">Dec 15, 2015</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>glassfish init script for linux </p>
+    <p>glassfish init script for linux</p>
 
 <p>create glassfish init file:</p>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo vi /etc/init.d/glassfish</span></code></pre></div>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo vi /etc/init.d/glassfish</span></code></pre></figure>
 
-<div class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span>!/bin/sh
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span><span class="o">!</span>/bin/sh
+<span class="go">
 
-
-<span class="go">GLASSFISH_HOME=${GLASSFISH_HOME:-&quot;/opt/glassfish/glassfish4&quot;}</span>
-
-<span class="go">case &quot;$1&quot; in</span>
-<span class="go">start)</span>
-<span class="gp">$</span>GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile start-domain domainname&gt;/dev/null
-<span class="go">;;</span>
-<span class="go">stop)</span>
-<span class="gp">$</span>GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile stop-domain domainname &gt;/dev/null
-<span class="go">;;</span>
-<span class="go">restart)</span>
-<span class="gp">$</span>GLASSFISH_HOME/bin/asadmin --passwordfile pdwfile restart-domain domainname&gt;/dev/null
-<span class="go">;;</span>
-<span class="go">\*)</span>
-<span class="go">echo &quot;usage: $0 (start|stop|restart|help)&quot;</span>
-<span class="go">esac</span></code></pre></div>
+</span><span class="gp">GLASSFISH_HOME=$</span><span class="o">{</span>GLASSFISH_HOME:-<span class="s2">"/opt/glassfish/glassfish4"</span><span class="o">}</span>
+<span class="go">
+</span><span class="gp">case "$</span>1<span class="s2">" in
+</span><span class="go">start)
+</span><span class="gp">$</span>GLASSFISH_HOME/bin/asadmin <span class="nt">--passwordfile</span> pdwfile start-domain domainname&gt;/dev/null
+<span class="gp">;</span><span class="p">;</span>
+<span class="go">stop)
+</span><span class="gp">$</span>GLASSFISH_HOME/bin/asadmin <span class="nt">--passwordfile</span> pdwfile stop-domain domainname <span class="o">&gt;</span>/dev/null
+<span class="gp">;</span><span class="p">;</span>
+<span class="go">restart)
+</span><span class="gp">$</span>GLASSFISH_HOME/bin/asadmin <span class="nt">--passwordfile</span> pdwfile restart-domain domainname&gt;/dev/null
+<span class="gp">;</span><span class="p">;</span>
+<span class="go">\*)
+</span><span class="gp">echo "usage: $</span>0 <span class="o">(</span>start|stop|restart|help<span class="o">)</span><span class="s2">"
+</span><span class="go">esac</span></code></pre></figure>
 
 <blockquote>
   <p>/dev/null means that we redirect output to null device (simply hiding the ouput)</p>
