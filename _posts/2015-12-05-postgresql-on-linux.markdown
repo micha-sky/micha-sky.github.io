@@ -1,9 +1,11 @@
+```
 ---
 layout: post
 title:  "install and use postgresql on linux"
 date:   2015-12-05 06:54:58 +0200
 categories: deployment
 ---
+```
 
 first we install postgresql:
 {% highlight console %}

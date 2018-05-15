@@ -1,0 +1,27 @@
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---
+layout: post
+title:  "install and use postgresql on linux"
+date:   2015-12-05 06:54:58 +0200
+categories: deployment
+---
+</code></pre></div></div>
+
+<p>first we install postgresql:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo apt-get update
+sudo apt-get install postgresql postgresql-contrib</span></code></pre></figure>
+
+<p>then, lets set password for postgres user:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">sudo su postgres
+psql
+\password postgres</span></code></pre></figure>
+
+<p>after typing password exit the console. 
+\q</p>
+
+<p>now lets create a database. you can do it in PSQL console, but i prefer createdb utility:</p>
+
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">createdb -h localhost -p 5432 -U postgres yourdatabasename</span></code></pre></figure>
+
+<p>where -h is host, -p is port and -U is user.</p>

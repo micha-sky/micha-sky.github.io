@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>welcome to Jekyll!</title>
+  <title>automating jmeter tests</title>
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/jekyll/update/2015/11/23/welcome-to-jekyll.html">
+  <link rel="canonical" href="http://localhost:4000/development,/testing/2018/05/11/automating-jmeter-tests.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
@@ -57,25 +57,23 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">welcome to Jekyll!</h1>
-    <p class="post-meta"><time datetime="2015-11-22T23:20:58+01:00" itemprop="datePublished">Nov 23, 2015</time></p>
+    <h1 class="post-title" itemprop="name headline">automating jmeter tests</h1>
+    <p class="post-meta"><time datetime="2018-05-11T11:17:58+02:00" itemprop="datePublished">May 11, 2018</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>You’ll find this post in your <code class="highlighter-rouge">_posts</code> directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run <code class="highlighter-rouge">jekyll serve</code>, which launches a web server and auto-regenerates your site when a file is updated.</p>
+    <p>if you have jmeter tests in you project and bothered of running them all the time manually you can run following command:</p>
 
-<p>To add new posts, simply add a file in the <code class="highlighter-rouge">_posts</code> directory that follows the convention <code class="highlighter-rouge">YYYY-MM-DD-name-of-post.ext</code> and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.</p>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">    jmeter -n -t file.jmx -l "report.csv"</span></code></pre></figure>
 
-<p>Jekyll also offers powerful support for code snippets:</p>
+<p>this will run jmeter test in background and save report in csv format.</p>
 
-<figure class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="k">def</span> <span class="nf">print_hi</span><span class="p">(</span><span class="nb">name</span><span class="p">)</span>
-  <span class="nb">puts</span> <span class="s2">"Hi, </span><span class="si">#{</span><span class="nb">name</span><span class="si">}</span><span class="s2">"</span>
-<span class="k">end</span>
-<span class="n">print_hi</span><span class="p">(</span><span class="s1">'Tom'</span><span class="p">)</span>
-<span class="c1">#=&gt; prints 'Hi, Tom' to STDOUT.</span></code></pre></figure>
-
-<p>Check out the <a href="http://jekyllrb.com/docs/home">Jekyll docs</a> for more info on how to get the most out of Jekyll. File all bugs/feature requests at <a href="https://github.com/jekyll/jekyll">Jekyll’s GitHub repo</a>. If you have questions, you can ask them on <a href="https://talk.jekyllrb.com/">Jekyll Talk</a>.</p>
-
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span><span class="o">!</span>/usr/bin/env bash
+<span class="go">
+</span><span class="gp">for file in test/*.jmx;</span> <span class="k">do</span>
+<span class="gp">    [ -e "$</span>file<span class="s2">" ] || continue
+</span><span class="gp">    jmeter -n -t "$</span><span class="s2">file"</span> <span class="nt">-l</span> <span class="s2">"reports/report.csv"</span> |  <span class="nb">grep</span> <span class="nt">-E</span> <span class="nt">--color</span> <span class="s1">'\d{1,2}\.\d{1,2}|$'</span>
+<span class="go">done</span></code></pre></figure>
 
   </div>
 

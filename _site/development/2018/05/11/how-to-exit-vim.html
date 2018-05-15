@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>how to set up jenkins project with glassfish</title>
+  <title>how to exit vim</title>
   <meta name="description" content="">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://localhost:4000/deployment/2015/11/28/how-to-deploy-from-jenkins-to-glassfish.html">
+  <link rel="canonical" href="http://localhost:4000/development/2018/05/11/how-to-exit-vim.html">
   <link rel="alternate" type="application/rss+xml" title="development blog" href="http://localhost:4000/feed.xml">
 </head>
 
@@ -57,53 +57,16 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">how to set up jenkins project with glassfish</h1>
-    <p class="post-meta"><time datetime="2015-11-27T23:39:58+01:00" itemprop="datePublished">Nov 28, 2015</time></p>
+    <h1 class="post-title" itemprop="name headline">how to exit vim</h1>
+    <p class="post-meta"><time datetime="2018-05-11T11:57:58+02:00" itemprop="datePublished">May 11, 2018</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>if you want to use jenkins and glassfish on one instance, it’s very easy to for continious integration.</p>
+    <p>i don’t know. but what i do know that vim is a cool tool to look through log files, even really big.</p>
 
-<p>first you want to add new maven project and configure git repository.</p>
+<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">:set filetype=messages</span></code></pre></figure>
 
-<p>then you need to add pre-build script that pulls changes from repository:</p>
-
-<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span><span class="o">!</span>/bin/bash
-<span class="go">
-cd /path/to/repository
-
-git pull origin master</span></code></pre></figure>
-
-<p>then you specify maven goal, e.g.</p>
-
-<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="go">mvn clean package -DskipTests=true</span></code></pre></figure>
-
-<p>after that you add post-build script, which deploys build to :</p>
-
-<figure class="highlight"><pre><code class="language-console" data-lang="console"><span class="gp">#</span><span class="o">!</span>/bin/bash
-<span class="go">
-echo -n "Undeploying current version..."
-/opt/glassfish4/bin/asadmin undeploy ROOT
-echo "done"
-
-echo -n "Stopping glassfish..."
-/opt/glassfish4/bin/asadmin stop-domain yourdomain
-echo "done"
-
-echo -n "Starting glassfish..."
-/opt/glassfish4/bin/asadmin start-domain yourdomain
-echo "done"
-
-echo -n "Deploying ROOT.WAR..."
-/opt/glassfish4/bin/asadmin --user admin deploy --contextroot / --name ROOT /var/lib/jenkins/workspace/projectname/target/ROOT.war
-echo "done"</span></code></pre></figure>
-
-<p>aslo you want to use –passwordfile option, that allows you not to type password every time you run this script.
-passwordfile contains AS_ADMIN_PASSWORD=yourpassword</p>
-
-<p>this would probably work without stopping and starting domain.</p>
-
-<p>after setting up project you want to build it, and schedule your build.</p>
+<p>when you type this in vim while viewing it will beautifully highlight them for you.</p>
 
   </div>
 
